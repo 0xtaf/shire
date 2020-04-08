@@ -26,9 +26,11 @@ const Home = ({ posts }) => (
     </div>
 
     {posts.map((post) => (
+      
       <div className="blog">
         <h2 className="blog-title">
-          <Link href="/test">
+          {console.log(post)}
+          <Link href="/[postId]" as={`/asd`}>
             <a className="blog-title-link">{post.title}</a>
           </Link>
         </h2>
@@ -87,12 +89,8 @@ const Home = ({ posts }) => (
 Home.getInitialProps = async function () {
   const res = await fetch('http://localhost:3000/api/posts');
   const data = await res.json();
-
-  console.log(`Show data fetched. Count: ${data.length}`);
-
-  return {
-    posts: data.posts,
-  };
+  console.log("data geliyor: ", data)
+  return {posts: data.posts};
 };
 
 export default Home;
