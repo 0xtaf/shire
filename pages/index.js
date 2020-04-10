@@ -88,9 +88,10 @@ const Home = ({ posts }) => (
 
 Home.getInitialProps = async function () {
   const res = await fetch('http://localhost:3000/api/posts');
-  const data = await res.json();
-  console.log("data geliyor: ", data)
-  return {posts: data.posts};
+  const json = await res.json();
+  console.log("data geliyor: ", json)
+  console.log("json.dat geliyor", json.data)
+  return {posts: json.data};
 };
 
 export default Home;
