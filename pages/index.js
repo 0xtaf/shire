@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
+import unfetch from 'isomorphic-unfetch';
+import slug from 'slug';
 
 const Home = ({ posts }) => (
   <div className="container">
@@ -12,32 +13,35 @@ const Home = ({ posts }) => (
     <div className="hero">
       <h1 className="hero-title">Tayfun Sür</h1>
       <div className="hero-social-links">
-        <Link href="https://twitter.com/_tsur">
+        <Link href="//twitter.com/_tsur">
           <a target="_blank" className="social-link">
             Twitter
           </a>
         </Link>
-        <Link href="https://www.linkedin.com/in/tayfunsur/">
+        <Link href="//www.linkedin.com/in/tayfunsur/">
           <a target="_blank" className="social-link">
             Linkedin
           </a>
         </Link>
       </div>
     </div>
-
-    {posts.map((post) => (
-      
-      <div className="blog">
-        <h2 className="blog-title">
-          {console.log(post)}
-          <Link href="/[postId]" as={`/asd`}>
-            <a className="blog-title-link">{post.title}</a>
-          </Link>
-        </h2>
-        <div>{post.details}</div>
-        <div className="blog-date">{post.date}</div>
-      </div>
-    ))}
+    <ul>
+      {posts.map((post) => (
+        
+        <li key={post._id}>
+          <div className="blog">
+            <h2 className="blog-title">
+              
+              <Link href="/blogs/[pid]" as={`/blogs/${post._id}`}>
+                <a className="blog-title-link">{post.title}</a>
+              </Link>
+            </h2>
+            <div>{post.details}</div>
+            <div className="blog-date">{post.date}</div>
+          </div>
+        </li>
+      ))}
+    </ul>
     <style jsx>{`
       .container {
         max-width: 650px;
@@ -86,12 +90,11 @@ const Home = ({ posts }) => (
   </div>
 );
 
-Home.getInitialProps = async function () {
-  const res = await fetch('http://localhost:3000/api/posts');
+export async function getStaticProps(){
+  const res = await unfetch('http://localhost:3000/api/posts');
   const json = await res.json();
-  console.log("data geliyor: ", json)
-  console.log("json.dat geliyor", json.data)
-  return {posts: json.data};
+  const posts = await json.data;
+  return { props: {posts} };
 };
 
 export default Home;

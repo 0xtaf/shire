@@ -4,18 +4,19 @@ import Post from '../../../Models/Post';
 dbConnect();
 
 export default async (req, res) => {
-  const {
-    query: { id },
-    method,
-  } = req;
 
+  const id = req.query.pid;
+  const method = req.method;
+  
+  console.log("aydi şudur ki", req.query.pid)
+  console.log("metod şudur ki", req.method)
   switch (method) {
     case 'GET':
       try {
         const post = await Post.findById(id);
 
         if (!post) {
-          return res.status(400).json({ success: false });
+          return res.status(400).json({ success: false, message:"post yok" });
         }
         res.status(200).json({ success: true, data: post });
       } catch (error) {

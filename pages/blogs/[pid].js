@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
+import unfetch from 'isomorphic-unfetch';
 
-const BlogPost = ({post}) => (
+const BlogPost = ({ post }) => (
   <div className="container">
     <Head>
       <title>Create Next App</title>
@@ -12,12 +12,12 @@ const BlogPost = ({post}) => (
     <div className="hero">
       <h1 className="hero-title">Tayfun Sür</h1>
       <div className="hero-social-links">
-        <Link href="https://twitter.com/_tsur">
+        <Link href="//twitter.com/_tsur">
           <a target="_blank" className="social-link">
             Twitter
           </a>
         </Link>
-        <Link href="https://www.linkedin.com/in/tayfunsur/">
+        <Link href="//www.linkedin.com/in/tayfunsur/">
           <a target="_blank" className="social-link">
             Linkedin
           </a>
@@ -27,11 +27,9 @@ const BlogPost = ({post}) => (
 
     <div className="blog">
       <h2 className="blog-title">
-          <a className="blog-title-link">{post.title}</a>
+        <a className="blog-title-link">{post.title}</a>
       </h2>
-      <div className="blog-text">
-        {post.details}
-      </div>
+      <div className="blog-text">{post.details}</div>
       <div className="blog-date">{post.date}</div>
     </div>
 
@@ -82,16 +80,34 @@ const BlogPost = ({post}) => (
     `}</style>
   </div>
 );
+export async function getStaticPaths() {
+  const data = await unfetch('http://localhost:3000/api/posts');
+  const json = await data.json();
 
-BlogPost.getInitialProps = async (req) => {
-  console.log("şimdi reqte")
-  console.log(req)
-  const res = await fetch(`http://localhost:3000/api/posts`);
-  const data = await res.json();
-  
+  const paths = json.data.map((item) => {
+    return {
+      params: {
+        pid: `${item._id}`,
+      },
+    };
+  });
+
   return {
-    post: data.posts,
+    paths,
+    fallback: false, // See the "fallback" section below
   };
-};
+}
+export async function getStaticProps({ params }) {
+  const res = await unfetch(`http://localhost:3000/api/posts/`+params.pid);
+  const json = await res.json();
+  const post = await json.data;
+  console.log('post şudur ki:', post);
+
+  return {
+    props: {
+      post,
+    },
+  };
+}
 
 export default BlogPost;

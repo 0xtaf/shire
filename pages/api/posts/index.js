@@ -23,7 +23,6 @@ export default async (req, res) => {
 
         res.status(201).json({ success: true, data: post });
       } catch (error) {
-        
         res.status(400).json({ success: false, message: error });
       }
       break;
