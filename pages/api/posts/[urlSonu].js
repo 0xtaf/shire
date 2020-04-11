@@ -4,13 +4,9 @@ import Post from '../../../Models/Post';
 dbConnect();
 
 export default async (req, res) => {
-  //dikkat 11 nisan için not: slug eklicen bugün buraya. slug eklerken id'yi urlsonundan çekiceksin. 
-  //şaşırma napcktım diye. ademden bak.
   const id = req.query.urlSonu;
   const method = req.method;
   
-  console.log("aydi şudur ki", req.query)
-  console.log("metod şudur ki", req.method)
   switch (method) {
     case 'GET':
       try {

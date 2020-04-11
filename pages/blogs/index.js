@@ -4,14 +4,9 @@ import unfetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 
-const BlogPost = ({ post }) => (
+const Blog = ({ posts }) => (
   <Layout>
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <div className="hero">
         <h1 className="hero-title">Tayfun Sür</h1>
         <div className="hero-social-links">
@@ -27,15 +22,24 @@ const BlogPost = ({ post }) => (
           </Link>
         </div>
       </div>
-
-      <div className="blog">
-        <h2 className="blog-title">
-          <a className="blog-title-link">{post.title}</a>
-        </h2>
-        <div className="blog-text">{post.details}</div>
-        <div className="blog-date">{post.date}</div>
-      </div>
-
+      <ul>
+        {posts.map((post) => (
+          <li key={post._id}>
+            <div className="blog">
+              <h2 className="blog-title">
+                <Link
+                  href="/blogs/[slug]"
+                  as={`/blogs/${slug(post.title)}-${post._id}`}
+                >
+                  <a className="blog-title-link">{post.title}</a>
+                </Link>
+              </h2>
+              <div>{post.details}</div>
+              <div className="blog-date">{post.date}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
       <style jsx>{`
         .container {
           max-width: 650px;
@@ -85,35 +89,12 @@ const BlogPost = ({ post }) => (
     </div>
   </Layout>
 );
-export async function getStaticPaths() {
-  const data = await unfetch('http://localhost:3000/api/posts');
-  const json = await data.json();
 
-  const paths = json.data.map((item) => {
-    return {
-      params: {
-        slug: `${slug(item.title)}-${item._id}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
-      },
-    };
-  });
-  console.log(paths);
-  return {
-    paths,
-    fallback: false, // See the "fallback" section below
-  };
-}
-export async function getStaticProps({ params }) {
-  const id = params.slug.split('-').slice(-1)[0];
-
-  const res = await unfetch(`http://localhost:3000/api/posts/` + id);
+export async function getStaticProps() {
+  const res = await unfetch('http://localhost:3000/api/posts');
   const json = await res.json();
-  const post = await json.data;
-
-  return {
-    props: {
-      post,
-    },
-  };
+  const posts = await json.data;
+  return { props: { posts } };
 }
 
-export default BlogPost;
+export default Blog;
