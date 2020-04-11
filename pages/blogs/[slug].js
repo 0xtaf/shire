@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import unfetch from 'isomorphic-unfetch';
+import slug from 'slug';
 
 const BlogPost = ({ post }) => (
   <div className="container">
@@ -87,18 +88,21 @@ export async function getStaticPaths() {
   const paths = json.data.map((item) => {
     return {
       params: {
-        pid: `${item._id}`,
+        slug: `${slug(item.title)}-${item._id}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
       },
     };
   });
-
+  console.log(paths);
   return {
     paths,
     fallback: false, // See the "fallback" section below
   };
 }
 export async function getStaticProps({ params }) {
-  const res = await unfetch(`http://localhost:3000/api/posts/`+params.pid);
+  console.log("burayı niye kaydetmiyo amk")
+  const id = params.slug.split("-").slice(-1)[0];
+  console.log("id şudur ki", id)
+  const res = await unfetch(`http://localhost:3000/api/posts/` + id);
   const json = await res.json();
   const post = await json.data;
   console.log('post şudur ki:', post);

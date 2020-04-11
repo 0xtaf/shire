@@ -10,8 +10,6 @@ export default async (req, res) => {
     case 'GET':
       try {
         const postx = await Post.find({});
-        console.log('gette');
-        console.log(postx);
         res.status(200).json({ success: true, data: postx });
       } catch (error) {
         res.status(400).json({ success: false });

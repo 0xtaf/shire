@@ -32,7 +32,7 @@ const Home = ({ posts }) => (
           <div className="blog">
             <h2 className="blog-title">
               
-              <Link href="/blogs/[pid]" as={`/blogs/${post._id}`}>
+              <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}-${post._id}`}>
                 <a className="blog-title-link">{post.title}</a>
               </Link>
             </h2>
