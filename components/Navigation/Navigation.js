@@ -3,17 +3,17 @@ import classes from './Navigation.module.css';
 function Navigation() {
   return (
     <nav className={classes.nav}>
-      <Link href="/">
-        <a>Ana Sayfa</a>
+      <Link href="/about">
+        <a>About</a>
       </Link>
       <Link href="/blogs">
         <a>Blog</a>
       </Link>
       <Link href="/writeups">
-        <a>Write-Ups</a>
+        <a>WriteUps</a>
       </Link>
       <Link href="/contact">
-        <a>İletişim</a>
+        <a>Contact</a>
       </Link>
     </nav>
   );

@@ -1,7 +1,26 @@
 .nav {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-start: 2;
+  grid-template-columns: repeat(5, 1fr);
+  /* grid-column-start: 2; */
   align-items: center;
   justify-items: center;
+  margin-right: 10vw;
+}
+
+.nav a {
+  padding: 0 13%;
+}
+
+@media (max-width: 500px) {
+  .nav {
+    grid-template-columns: repeat(4, 1fr);
+    margin-right: 0;
+    padding-bottom: 2%;
+  }
+  .nav a {
+    padding: 0 2%;
+  }
+  .nav a:nth-child(3){
+    margin-right: 7%;
+  }
 }
