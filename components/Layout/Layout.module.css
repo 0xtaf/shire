@@ -23,6 +23,8 @@
   font-size: 0.9em;
 }
 
+
+
 @media (max-width: 500px) {
   .header {
     width: 100%;
