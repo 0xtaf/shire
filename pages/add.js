@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = () => {
+const AddForm = () => {
   return (
     <div>
       <form action="" method="POST">
@@ -92,4 +92,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default AddForm;
