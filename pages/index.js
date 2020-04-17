@@ -9,10 +9,10 @@ const Home = () => (
   <div className={classes.wrapper}>
     <Layout>
       <div className={classes.container}>
-        <h1 className={classes.header}>TAYFUN SUR</h1>
+        <h1 className={classes.header}>tayfun sur</h1>
         <p className={classes.p1}>an aspiring full stack web developer</p>
         <p className={classes.p2}>and a web application security enthusiast</p>
-        <ul>
+        
           <div className={classes.link}>
             <Link href="//www.twitter.com/_tsur">
               <a target="_blank">
@@ -36,9 +36,18 @@ const Home = () => (
               </a>
             </Link>
           </div>
-        </ul>
+        
 
         <style jsx>{`
+          h1 {
+            font-weight: 100;
+            text-transform: uppercase;
+            font-size: 3em;
+          }
+
+          p {
+            font-size: 2.70em;
+          }
           a {
             border: 1px solid #ccc;
             width: 3rem;
@@ -50,7 +59,6 @@ const Home = () => (
             margin: 0;
             padding: 0;
           }
-
         `}</style>
       </div>
     </Layout>

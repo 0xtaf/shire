@@ -3,12 +3,16 @@ import Head from 'next/head';
 import Navigation from '../Navigation/Navigation';
 import classes from './Layout.module.css';
 import Link from 'next/link';
+
 const Layout = ({ children }) => {
   return (
     <div>
       <Head>
         <title>Tayfun Sur Blog</title>
+        
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+        
       </Head>
       <header className={classes.header}>
         <div className={classes.name}>
