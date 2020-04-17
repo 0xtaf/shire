@@ -3,6 +3,7 @@ import Link from 'next/link';
 import unfetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
+import classes from '../../components/index.module.css';
 
 const Blog = ({ posts }) => (
   <Layout>

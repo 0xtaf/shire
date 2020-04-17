@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
               <a>Tayfun Sür</a>
             </Link>
           </div>
-          <div>Personal blog on security and life</div>
+          <div>Personal blog on web development, security and life</div>
         </div>
         <Navigation className={classes.navigation} />
       </header>

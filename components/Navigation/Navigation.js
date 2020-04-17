@@ -9,7 +9,7 @@ function Navigation() {
       <Link href="/blogs">
         <a>Blog</a>
       </Link>
-      <Link href="/writeups">
+      <Link href="/write-ups">
         <a>WriteUps</a>
       </Link>
       <Link href="/contact">
