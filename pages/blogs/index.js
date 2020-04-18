@@ -4,6 +4,7 @@ import unfetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../components/index.module.css';
+const ReactMarkdown = require('react-markdown');
 
 const Blog = ({ posts }) => (
   <Layout>
@@ -28,14 +29,11 @@ const Blog = ({ posts }) => (
           <li key={post._id}>
             <div className="blog">
               <h2 className="blog-title">
-                <Link
-                  href="/blogs/[slug]"
-                  as={`/blogs/${slug(post.title)}-${post._id}`}
-                >
+                <Link href="/blogs/[slug]" as={`/blogs/${post.title}`}>
                   <a className="blog-title-link">{post.title}</a>
                 </Link>
               </h2>
-              <div>{post.details}</div>
+              {<ReactMarkdown source={post.details} />}
               <div className="blog-date">{post.date}</div>
             </div>
           </li>
@@ -72,14 +70,12 @@ const Blog = ({ posts }) => (
           margin: 0.75em 0 3em 0;
         }
       `}</style>
-
-
     </div>
   </Layout>
 );
 
 export async function getStaticProps() {
-  const res = await unfetch('https://shire-c2l9wct3m.now.sh/api/posts');
+  const res = await unfetch('http://localhost:3000/api/posts');
   const json = await res.json();
   const posts = await json.data;
   return { props: { posts } };

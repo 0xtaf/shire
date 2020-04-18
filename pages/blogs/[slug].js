@@ -3,6 +3,7 @@ import Link from 'next/link';
 import unfetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
+const ReactMarkdown = require('react-markdown');
 
 const BlogPost = ({ post }) => (
   <Layout>
@@ -32,7 +33,8 @@ const BlogPost = ({ post }) => (
         <h2 className="blog-title">
           <a className="blog-title-link">{post.title}</a>
         </h2>
-        <div className="blog-text">{post.details}</div>
+        <ReactMarkdown source={post.details} className="blog-text" />
+
         <div className="blog-date">{post.date}</div>
       </div>
 
@@ -67,18 +69,17 @@ const BlogPost = ({ post }) => (
           margin: 0.75em 0 3em 0;
         }
       `}</style>
-
     </div>
   </Layout>
 );
 export async function getStaticPaths() {
-  const data = await unfetch('https://shire-c2l9wct3m.now.sh/api/posts');
+  const data = await unfetch('http://localhost:3000/api/posts');
   const json = await data.json();
 
   const paths = json.data.map((item) => {
     return {
       params: {
-        slug: `${slug(item.title)}-${item._id}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
+        slug: `${item.title}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
       },
     };
   });
@@ -89,9 +90,10 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }) {
-  const id = params.slug.split('-').slice(-1)[0];
+  const slug = params.slug;
+  console.log('slug bu: ', slug);
 
-  const res = await unfetch(`http://localhost:3000/api/posts/` + id);
+  const res = await unfetch(`http://localhost:3000/api/posts/` + slug);
   const json = await res.json();
   const post = await json.data;
 

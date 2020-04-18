@@ -3,24 +3,26 @@ import React from 'react';
 const AddForm = () => {
   return (
     <div>
-      <form action="" method="POST">
+      <form action="/api/posts" method="POST">
         <div className="form-row">
-          <label for="title">Title</label>
+          <label htmlFor="title">Title</label>
           <input
             id="title"
             type="text"
             name="title"
             placeholder="2412 steps to become a good blog writer"
+            
           />
         </div>
         <div className="form-row">
-          <label for="details">Blogpost</label>
+          <label htmlFor="details">Blogpost</label>
           <textarea
             id="details"
             cols=""
             rows="10"
             name="details"
             placeholder="The earth is flat and the ones who deny that are ignorant..."
+            
           />
         </div>
         <div className="form-row">

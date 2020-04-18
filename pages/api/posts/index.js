@@ -20,9 +20,11 @@ export default async (req, res) => {
         const post = await Post.create(req.body);
 
         res.status(201).json({ success: true, data: post });
+        
       } catch (error) {
-        res.status(400).json({ success: false, message: error });
+        res.status(400).json({ success: false, message: console.log(error) });
       }
+
       break;
     default:
       res.status(400).json({ success: false });
