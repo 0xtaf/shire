@@ -1,5 +1,6 @@
 import dbConnect from '../../../utils/dbConnect';
 import Post from '../../../Models/Post';
+import slug from 'slug';
 
 dbConnect();
 
@@ -17,8 +18,9 @@ export default async (req, res) => {
       break;
     case 'POST':
       try {
+        
         const post = await Post.create(req.body);
-
+        
         res.status(201).json({ success: true, data: post });
         
       } catch (error) {

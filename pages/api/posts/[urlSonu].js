@@ -5,20 +5,20 @@ import slug from 'slug';
 dbConnect();
 
 export default async (req, res) => {
-  const id = req.query.urlSonu;
+  const title = req.query.urlSonu;
   const method = req.method;
-  console.log("id de bu", id)
+
   switch (method) {
     case 'GET':
       try {
-        const post = await Post.findOne({title: id});
+        const post = await Post.findOne({ slug: title });
 
         if (!post) {
-          return res.status(400).json({ success: false, message:"post yok" });
+          return res.status(400).json({ success: false, message: 'no post' });
         }
         res.status(200).json({ success: true, data: post });
       } catch (error) {
-        res.status(400).json({ success: false, message:console.log(error) });
+        res.status(400).json({ success: false, message: error });
       }
       break;
     case 'PUT':
@@ -43,7 +43,7 @@ export default async (req, res) => {
           return res.status(400).json({ success: false });
         }
 
-        res.status(200).json({ success: true, data:{} });
+        res.status(200).json({ success: true, data: {} });
       } catch (error) {
         res.status(400).json({ success: false });
       }

@@ -23,7 +23,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
-    "slug": "^2.1.1"
+    "slug": "^2.1.1",
+    "unslug": "^0.1.0"
   },
   "devDependencies": {
     "prettier": "^2.0.4"

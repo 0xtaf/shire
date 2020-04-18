@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import unfetch from 'isomorphic-unfetch';
-import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 const ReactMarkdown = require('react-markdown');
 
@@ -79,11 +78,10 @@ export async function getStaticPaths() {
   const paths = json.data.map((item) => {
     return {
       params: {
-        slug: `${item.title}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
+        slug: `${item.slug}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
       },
     };
   });
-  console.log(paths);
   return {
     paths,
     fallback: false, // See the "fallback" section below
@@ -91,9 +89,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const slug = params.slug;
-  console.log('slug bu: ', slug);
-
-  const res = await unfetch(`http://localhost:3000/api/posts/` + slug);
+  const res = await unfetch(`http://localhost:3000/api/posts/${slug}`);
   const json = await res.json();
   const post = await json.data;
 

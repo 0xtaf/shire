@@ -1,30 +1,26 @@
 const mongoose = require('mongoose');
-const marked = require('marked');
-const DomPurify = require('dompurify');
-
-
+import slug from 'slug';
 
 const PostSchema = new mongoose.Schema({
   title: {
     required: true,
-    type: String
+    type: String,
   },
   details: {
     required: true,
-    type: String
+    type: String,
   },
   date: {
-    type: String
+    type: String,
   },
-})
+  slug: {
+    type: String,
+  },
+});
 
-// PostSchema.pre('validate', function(next){
-//   if (this.details) {
-//     this.details = DomPurify.sanitize(marked(this.details))
-//   }
-//   next();
-// })
-
+PostSchema.pre('save', function (next) {
+  this.slug = slug(this.title);
+  next();
+});
 
 module.exports = mongoose.models.Post || mongoose.model('Post', PostSchema);
-

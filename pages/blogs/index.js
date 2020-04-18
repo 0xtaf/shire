@@ -29,7 +29,7 @@ const Blog = ({ posts }) => (
           <li key={post._id}>
             <div className="blog">
               <h2 className="blog-title">
-                <Link href="/blogs/[slug]" as={`/blogs/${post.title}`}>
+                <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
                   <a className="blog-title-link">{post.title}</a>
                 </Link>
               </h2>
