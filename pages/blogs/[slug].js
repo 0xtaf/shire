@@ -72,7 +72,7 @@ const BlogPost = ({ post }) => (
   </Layout>
 );
 export async function getStaticPaths() {
-  const data = await unfetch('http://localhost:3000/api/posts');
+  const data = await unfetch('https://shire-c2l9wct3m.now.sh/api/posts');
   const json = await data.json();
 
   const paths = json.data.map((item) => {
