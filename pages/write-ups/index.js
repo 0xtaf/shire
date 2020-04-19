@@ -54,7 +54,7 @@ const Writeup = ({ posts }) => (
 );
 
 export async function getStaticProps() {
-  const res = await fetch('https://tayfunsur.com/api/write-ups');
+  const res = await fetch('http://tayfunsur.com/api/write-ups/main');
   const { data } = await res.json();
   return {
     props: {
