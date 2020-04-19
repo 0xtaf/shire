@@ -5,3 +5,10 @@
     }
   }
 }
+{
+  "name": "shire",
+  "version": 2,
+  "env": {
+    "MONGODB_URI": "@shire"
+  }
+}
