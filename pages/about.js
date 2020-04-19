@@ -1,6 +1,5 @@
 
 import Layout from '../components/Layout/Layout';
-import classes from '../components/index.module.css';
 
 const Home = () => (
   <Layout>
