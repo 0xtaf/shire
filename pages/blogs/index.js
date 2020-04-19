@@ -33,7 +33,7 @@ const Blog = ({ posts }) => (
         .container {
           max-width: 90%;
           width: 100%;
-          margin: 0 auto;
+          margin: 1rem auto;
         }
 
         .blog-date {
