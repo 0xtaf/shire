@@ -48,10 +48,10 @@ const Blog = ({ posts }) => (
 );
 
 export async function getStaticProps() {
-  const res = await unfetch('http://tsurwebsite.herokuapp.com/api/posts');
-  const json = await res.json();
-  const posts = await json.data;
-  return { props: { posts } };
+  const res = await unfetch('http://tayfunsur.com/api/posts');
+  const { data } = await res.json();
+
+  return { props: { posts: data } };
 }
 
 export default Blog;

@@ -72,7 +72,7 @@ const WriteUp = ({ writeup }) => (
   </Layout>
 );
 export async function getStaticPaths() {
-  const data = await unfetch('http://tsurwebsite.herokuapp.com/api/write-ups');
+  const data = await unfetch('http://tayfunsur.com/api/write-ups');
   const json = await data.json();
 
   const paths = json.data.map((item) => {
@@ -89,13 +89,13 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const slug = params.slug;
-  const res = await unfetch(`http://tsurwebsite.herokuapp.com/api/write-ups/${slug}`);
-  const json = await res.json();
-  const writeup = await json.data;
+  const res = await unfetch(`http://tayfunsur.com/api/write-ups/${slug}`);
+  const { data } = await res.json();
+  
 
   return {
     props: {
-      writeup,
+     writeup: data,
     },
   };
 }

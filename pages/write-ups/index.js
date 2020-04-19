@@ -14,12 +14,18 @@ const Writeup = ({ posts }) => (
           .map((post) => (
             <article key={post._id}>
               <div>
-                <Link href="/write-ups/[slug]" as={`/write-ups/${slug(post.title)}`}>
+                <Link
+                  href="/write-ups/[slug]"
+                  as={`/write-ups/${slug(post.title)}`}
+                >
                   <a>
                     <img src={`${slug(post.title)}.png`} alt="1" />
                   </a>
                 </Link>
-                <Link href="/write-ups/[slug]" as={`/write-ups/${slug(post.title)}`}>
+                <Link
+                  href="/write-ups/[slug]"
+                  as={`/write-ups/${slug(post.title)}`}
+                >
                   <a className={classes.title}>
                     <div>{post.title}</div>
                   </a>
@@ -48,10 +54,13 @@ const Writeup = ({ posts }) => (
 );
 
 export async function getStaticProps() {
-  const res = await unfetch('http://tsurwebsite.herokuapp.com/api/write-ups');
-  const json = await res.json();
-  const posts = await json.data;
-  return { props: { posts } };
+  const res = await unfetch('http://tayfunsur.com/api/write-ups');
+  const { data } = await res.json();
+  return {
+    props: {
+      posts: data,
+    },
+  };
 }
 
 export default Writeup;
