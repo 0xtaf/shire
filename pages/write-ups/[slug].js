@@ -71,32 +71,32 @@ const WriteUp = ({ writeup }) => (
     </div>
   </Layout>
 );
-export async function getStaticPaths() {
-  const data = await fetch('http://tayfunsur.com/api/write-ups/main');
-  const json = await data.json();
+// export async function getStaticPaths() {
+//   const data = await fetch('http://tayfunsur.com/api/write-ups/main');
+//   const json = await data.json();
 
-  const paths = json.data.map((item) => {
-    return {
-      params: {
-        slug: `${item.slug}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
-      },
-    };
-  });
-  return {
-    paths,
-    fallback: false, // See the "fallback" section below
-  };
-}
-export async function getStaticProps({ params }) {
-  const slug = params.slug;
+//   const paths = json.data.map((item) => {
+//     return {
+//       params: {
+//         slug: `${item.slug}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
+//       },
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: false, // See the "fallback" section below
+//   };
+// }
+WriteUp.getInitialProps = async({ req, query }) => {
+  const slug = query.slug;
   const res = await fetch(`http://tayfunsur.com/api/write-ups/${slug}`);
   const { data } = await res.json();
   
 
   return {
-    props: {
+  
      writeup: data,
-    },
+ 
   };
 }
 

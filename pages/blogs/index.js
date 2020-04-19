@@ -47,11 +47,11 @@ const Blog = ({ posts }) => (
   </Layout>
 );
 
-export async function getStaticProps() {
+Blog.getInitialProps = async () => {
   const res = await fetch('http://tayfunsur.com/api/posts/blogs');
   const { data } = await res.json();
 
-  return { props: { posts: data } };
+  return {  posts: data };
 }
 
 export default Blog;
