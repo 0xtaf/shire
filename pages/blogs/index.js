@@ -1,67 +1,39 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import unfetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
-import classes from '../../components/index.module.css';
+import classes from '../../styles/blogIndex.module.css';
 const ReactMarkdown = require('react-markdown');
 
 const Blog = ({ posts }) => (
   <Layout>
     <div className="container">
-      <div className="hero">
-        <h1 className="hero-title">Tayfun Sür</h1>
-        <div className="hero-social-links">
-          <Link href="//twitter.com/_tsur">
-            <a target="_blank" className="social-link">
-              Twitter
-            </a>
-          </Link>
-          <Link href="//www.linkedin.com/in/tayfunsur/">
-            <a target="_blank" className="social-link">
-              Linkedin
-            </a>
-          </Link>
-        </div>
-      </div>
-      <ul>
+      <div className={classes.wrapper}>
         {posts.map((post) => (
-          <li key={post._id}>
-            <div className="blog">
-              <h2 className="blog-title">
-                <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
-                  <a className="blog-title-link">{post.title}</a>
-                </Link>
-              </h2>
-              {<ReactMarkdown source={post.details} />}
+          <article key={post._id}>
+            <div>
+              <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
+                <a>
+                  <img src={`${slug(post.title)}.png`} alt="1" />
+                </a>
+              </Link>
+              <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
+                <a className={classes.title}>
+                  <div>{post.title}</div>
+                </a>
+              </Link>
+
+              {/*<ReactMarkdown source={post.details} />*/}
               <div className="blog-date">{post.date}</div>
             </div>
-          </li>
+          </article>
         ))}
-      </ul>
+      </div>
       <style jsx>{`
         .container {
-          max-width: 650px;
+          max-width: 90%;
           width: 100%;
           margin: 0 auto;
-        }
-
-        .hero {
-          text-align: center;
-          margin: 5rem;
-        }
-
-        .social-link:first-child {
-          margin-right: 8px;
-        }
-
-        .hero-title {
-          font-size: 3rem;
-        }
-
-        a {
-          color: #1b4ff8;
-          text-decoration: none;
         }
 
         .blog-date {
