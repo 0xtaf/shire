@@ -1,6 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout/Layout';
-const ContactForm = () => {
+const Contact = () => {
+  const [status, setStatus] = useState({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null },
+  });
+
+  const [inputs, setInputs] = useState({
+    email: '',
+    message: '',
+  });
+
+  const handleResponse = (status, msg) => {
+    if (status === 200) {
+      setStatus({
+        submitted: true,
+        submitting: false,
+        info: { error: false, msg: msg },
+      });
+      setInputs({
+        email: '',
+        message: '',
+      });
+    } else {
+      setStatus({
+        info: { error: true, msg: msg },
+      });
+    }
+  };
+
+  const handleOnChange = (e) => {
+    e.persist();
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+    setStatus({
+      submitted: false,
+      submitting: false,
+      info: { error: false, msg: null },
+    });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
+    const res = await fetch('/api/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    });
+    const text = await res.text();
+    handleResponse(res.status, text);
+  };
+
   return (
     <Layout>
       <div className="container">
@@ -8,33 +64,59 @@ const ContactForm = () => {
           <h2>Contact</h2>
           <p>Do not hesitate to share your opinion or suggestion with me!</p>
         </div>
-
-        <form action="" method="POST">
+        
+        <form action="" method="POST" onSubmit={handleOnSubmit}>
           <div className="form-row firstrow">
             <div>
-              <label htmlFor="name">Name</label>
-              <input id="name" type="text" name="name" />
+              <label htmlFor="senderName">Name</label>
+              <input id="senderName" type="text" name="senderName" />
             </div>
 
             <div>
               <label htmlFor="email">Email</label>
-              <input id="email" type="email" name="email" />
+              <input
+                id="email"
+                type="email"
+                name="email"
+                onChange={handleOnChange}
+                required
+                value={inputs.email}
+              />
             </div>
           </div>
 
           <div className="form-row">
             <label htmlFor="message">Message</label>
-            <textarea id="message" cols="" rows="10" name="message" />
+            <textarea
+              id="message"
+              cols=""
+              rows="10"
+              name="message"
+              onChange={handleOnChange}
+              required
+              value={inputs.message}
+            />
           </div>
           <div className="form-row">
-            <button type="submit">Send</button>
+            <button type="submit" disabled={status.submitting}>
+              {!status.submitting
+                ? !status.submitted
+                  ? 'Submit'
+                  : 'Submitted'
+                : 'Submitting...'}
+            </button>
           </div>
         </form>
-
+        {status.info.error && (
+          <div className="error">Error: {status.info.msg}</div>
+        )}
+        {!status.info.error && status.info.msg && (
+          <div className="success">{status.info.msg}</div>
+        )}
         <style jsx>{`
           .textWrapper {
             margin-left: 31vw;
-            margin-top: -2%
+            margin-top: -2%;
           }
           .textWrapper h2 {
             font-size: 3em;
@@ -199,4 +281,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default Contact;
