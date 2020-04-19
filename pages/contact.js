@@ -4,21 +4,26 @@ const ContactForm = () => {
   return (
     <Layout>
       <div className="container">
+        <div className="textWrapper">
+          <h2>Contact</h2>
+          <p>Do not hesitate to share your opinion or suggestion with me!</p>
+        </div>
+
         <form action="" method="POST">
           <div className="form-row firstrow">
             <div>
-              <label for="name">Name</label>
+              <label htmlFor="name">Name</label>
               <input id="name" type="text" name="name" />
             </div>
 
             <div>
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input id="email" type="email" name="email" />
             </div>
           </div>
 
           <div className="form-row">
-            <label for="message">Message</label>
+            <label htmlFor="message">Message</label>
             <textarea id="message" cols="" rows="10" name="message" />
           </div>
           <div className="form-row">
@@ -27,11 +32,24 @@ const ContactForm = () => {
         </form>
 
         <style jsx>{`
+          .textWrapper {
+            margin-left: 31vw;
+            margin-top: -2%
+          }
+          .textWrapper h2 {
+            font-size: 3em;
+            font-weight: 400;
+          }
+          .textWrapper p {
+            max-width: 35vw;
+            font-size: 1.2em;
+            margin-top: -2%;
+          }
+
           form {
             padding: 40px;
-            width: 48.5vw;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 28vw;
+            margin-top: -2%;
           }
 
           .form-row {
@@ -49,7 +67,7 @@ const ContactForm = () => {
 
           .name,
           .email {
-            display: inline-block;
+            display: inline;
           }
 
           input[type='text'],
@@ -66,8 +84,14 @@ const ContactForm = () => {
             font-family: inherit;
             background-color: white;
           }
+
+          input[type='text'],
+          input[type='email'] {
+            display: inline;
+          }
+
           textarea {
-            height: 55vh;
+            height: 35vh;
             padding-top: 1.5%;
             padding-bottom: 1.5%;
             min-height: 42px;
@@ -105,6 +129,14 @@ const ContactForm = () => {
           }
 
           @media (max-width: 1000px) {
+            .textWrapper {
+              margin-left: 27vw;
+            }
+            .textWrapper h2 {
+              font-size: 3em;
+              font-weight: 400;
+            }
+
             form {
               padding: 40px;
               width: 55.5vw;
@@ -129,6 +161,16 @@ const ContactForm = () => {
           }
 
           @media (max-width: 760px) {
+            .textWrapper {
+              margin-left: 21.6vw;
+            }
+            .textWrapper h2 {
+              font-size: 2.7em;
+              font-weight: 400;
+            }
+            .textWrapper p {
+              max-width: 49vw;
+            }
             form {
               width: 70.5vw;
             }
@@ -137,6 +179,16 @@ const ContactForm = () => {
             }
           }
           @media (max-width: 460px) {
+            .textWrapper {
+              margin-left: 14.6vw;
+            }
+            .textWrapper h2 {
+              font-size: 2.2em;
+              font-weight: 400;
+            }
+            .textWrapper p {
+              max-width: 58vw;
+            }
             form {
               width: 90.5vw;
             }
