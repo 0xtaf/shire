@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import unfetch from 'isomorphic-unfetch';
+import fetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/blogIndex.module.css';
@@ -54,7 +54,7 @@ const Writeup = ({ posts }) => (
 );
 
 export async function getStaticProps() {
-  const res = await unfetch('http://tayfunsur.com/api/write-ups');
+  const res = await fetch('http://localhost:3000/api/write-ups');
   const { data } = await res.json();
   return {
     props: {

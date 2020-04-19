@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import unfetch from 'isomorphic-unfetch';
+import fetch from 'isomorphic-unfetch';
 import Layout from '../../components/Layout/Layout';
 const ReactMarkdown = require('react-markdown');
 
@@ -72,7 +72,7 @@ const BlogPost = ({ post }) => (
   </Layout>
 );
 export async function getStaticPaths() {
-  const data = await unfetch('http://tayfunsur.com/api/posts');
+  const data = await fetch('http://localhost:3000/api/posts');
   const json = await data.json();
 
   const paths = json.data.map((item) => {
@@ -89,7 +89,8 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const slug = params.slug;
-  const res = await unfetch(`http://tayfunsur.com/api/posts/${slug}`);
+  const res = await fetch(`http://localhost:3000/api/posts/${slug}`);
+  console.log("ressssss", res)
   const { data } = await res.json();
 
   return {
