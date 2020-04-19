@@ -1,6 +1,5 @@
 import dbConnect from '../../../utils/dbConnect';
 import Writeup from '../../../Models/Writeup';
-import slug from 'slug';
 
 dbConnect();
 

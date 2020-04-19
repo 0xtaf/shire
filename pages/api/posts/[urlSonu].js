@@ -1,6 +1,5 @@
 import dbConnect from '../../../utils/dbConnect';
 import Post from '../../../Models/Post';
-import slug from 'slug';
 
 dbConnect();
 
