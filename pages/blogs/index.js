@@ -48,7 +48,7 @@ const Blog = ({ posts }) => (
 );
 
 export async function getStaticProps() {
-  const res = await unfetch('http://localhost:3000/api/posts');
+  const res = await unfetch('https://shire.now.sh/api/posts');
   const json = await res.json();
   const posts = await json.data;
   return { props: { posts } };
