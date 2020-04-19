@@ -72,7 +72,7 @@ const WriteUp = ({ writeup }) => (
   </Layout>
 );
 export async function getStaticPaths() {
-  const data = await fetch('http://localhost:3000/api/write-ups');
+  const data = await fetch('http://tayfunsur.com/api/write-ups');
   const json = await data.json();
 
   const paths = json.data.map((item) => {
@@ -89,7 +89,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const slug = params.slug;
-  const res = await fetch(`http://localhost:3000/api/write-ups/${slug}`);
+  const res = await fetch(`http://tayfunsur.com/api/write-ups/${slug}`);
   const { data } = await res.json();
   
 
