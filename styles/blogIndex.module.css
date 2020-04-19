@@ -2,10 +2,11 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-items: center;
-  grid-gap: .5rem 3rem;
+  grid-gap: 0.5rem 3rem;
 }
 
-.wrapper > article {
+
+.wrapper article {
   overflow: hidden;
 }
 
@@ -14,10 +15,10 @@
   max-width: 100%;
   border-radius: 5px;
   width: 23.5rem;
-  height: 13rem;  
+  height: 13rem;
 }
 
-.title{
+.title {
   color: rgba(18, 15, 39, 0.91);
   text-decoration: none;
   font-size: 1.5rem;
@@ -25,14 +26,14 @@
 
 .title > div {
   text-align: center;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 1125px) {
   .wrapper img {
-    height: auto; 
+    height: auto;
   }
-  .title{
+  .title {
     font-size: 1.3rem;
   }
 }
@@ -44,7 +45,7 @@
 }
 
 @media (max-width: 590px) {
-  .title{
+  .title {
     font-size: 1.2rem;
   }
 }
@@ -54,10 +55,10 @@
     grid-template-columns: minmax(0, 1fr);
     margin: 0 1rem;
   }
-  .title{
+  .title {
     font-size: 1.2rem;
   }
   .wrapper img {
-    height: 13rem; 
+    height: 13rem;
   }
 }

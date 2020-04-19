@@ -3,31 +3,32 @@ import unfetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/blogIndex.module.css';
-const ReactMarkdown = require('react-markdown');
 
 const Blog = ({ posts }) => (
   <Layout>
     <div className="container">
       <div className={classes.wrapper}>
-        {posts.map((post) => (
-          <article key={post._id}>
-            <div>
-              <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
-                <a>
-                  <img src={`${slug(post.title)}.png`} alt="1" />
-                </a>
-              </Link>
-              <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
-                <a className={classes.title}>
-                  <div>{post.title}</div>
-                </a>
-              </Link>
+        {posts
+          .slice(0)
+          .reverse()
+          .map((post) => (
+            <article key={post._id}>
+              <div>
+                <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
+                  <a>
+                    <img src={`${slug(post.title)}.png`} alt="1" />
+                  </a>
+                </Link>
+                <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
+                  <a className={classes.title}>
+                    <div>{post.title}</div>
+                  </a>
+                </Link>
 
-              {/*<ReactMarkdown source={post.details} />*/}
-              <div className="blog-date">{post.date}</div>
-            </div>
-          </article>
-        ))}
+                <div className="blog-date">{post.date}</div>
+              </div>
+            </article>
+          ))}
       </div>
       <style jsx>{`
         .container {
