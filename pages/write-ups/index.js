@@ -48,7 +48,7 @@ const Writeup = ({ posts }) => (
 );
 
 export async function getStaticProps() {
-  const res = await unfetch('http://localhost:3000/api/write-ups');
+  const res = await unfetch('http://tsurwebsite.herokuapp.com/api/write-ups');
   const json = await res.json();
   const posts = await json.data;
   return { props: { posts } };
