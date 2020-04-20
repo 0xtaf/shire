@@ -72,7 +72,7 @@ const BlogPost = ({ post }) => (
   </Layout>
 );
 // export async function getStaticPaths() {
-//   const data = await fetch('http://tayfunsur.com/api/posts/blogs');
+//   const data = await fetch('https://tayfunsur.com/api/posts/blogs');
 //   const json = await data.json();
 
 //   const paths = json.data.map((item) => {
@@ -89,7 +89,7 @@ const BlogPost = ({ post }) => (
 // }
 BlogPost.getInitialProps = async({ req, query }) => {
   const slug = query.slug;
-  const res = await fetch(`http://tayfunsur.com/api/posts/${slug}`);
+  const res = await fetch(`https://tayfunsur.com/api/posts/${slug}`);
   console.log("ressssss", res)
   const { data } = await res.json();
 

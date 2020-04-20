@@ -72,7 +72,7 @@ const WriteUp = ({ writeup }) => (
   </Layout>
 );
 // export async function getStaticPaths() {
-//   const data = await fetch('http://tayfunsur.com/api/write-ups/main');
+//   const data = await fetch('https://tayfunsur.com/api/write-ups/main');
 //   const json = await data.json();
 
 //   const paths = json.data.map((item) => {
@@ -89,7 +89,7 @@ const WriteUp = ({ writeup }) => (
 // }
 WriteUp.getInitialProps = async({ req, query }) => {
   const slug = query.slug;
-  const res = await fetch(`http://tayfunsur.com/api/write-ups/${slug}`);
+  const res = await fetch(`https://tayfunsur.com/api/write-ups/${slug}`);
   const { data } = await res.json();
   
 
