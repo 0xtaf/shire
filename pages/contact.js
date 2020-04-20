@@ -70,7 +70,7 @@ const Contact = () => {
             <div className="form-row firstrow">
               <div>
                 <label htmlFor="senderName">Name</label>
-                <input id="senderName" type="text" name="senderName" />
+                <input id="senderName" type="text" name="senderName" value={inputs.senderName}/>
               </div>
 
               <div>
