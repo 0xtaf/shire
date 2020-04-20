@@ -1,25 +1,25 @@
 import dbConnect from '../../../utils/dbConnect';
 import Post from '../../../Models/Post';
-import Cors from 'cors'
+import Cors from 'cors';
 // Initializing the cors middleware
 const cors = Cors({
   origin: '*',
-})
+});
 function runMiddleware(req, res, fn) {
   return new Promise((resolve, reject) => {
-    fn(req, res, result => {
+    fn(req, res, (result) => {
       if (result instanceof Error) {
-        return reject(result)
+        return reject(result);
       }
 
-      return resolve(result)
-    })
-  })
+      return resolve(result);
+    });
+  });
 }
 dbConnect();
 
 export default async (req, res) => {
-  await runMiddleware(req, res, cors)
+  await runMiddleware(req, res, cors);
   const { method } = req;
 
   switch (method) {
