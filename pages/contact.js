@@ -10,6 +10,7 @@ const Contact = () => {
   const [inputs, setInputs] = useState({
     email: '',
     message: '',
+    senderName: '',
   });
 
   const handleResponse = (status, msg) => {
@@ -22,6 +23,7 @@ const Contact = () => {
       setInputs({
         email: '',
         message: '',
+        senderName: '',
       });
     } else {
       setStatus({
@@ -70,7 +72,13 @@ const Contact = () => {
             <div className="form-row firstrow">
               <div>
                 <label htmlFor="senderName">Name</label>
-                <input id="senderName" type="text" name="senderName" value={inputs.senderName}/>
+                <input
+                  id="senderName"
+                  type="text"
+                  name="senderName"
+                  onChange={handleOnChange}
+                  value={inputs.senderName}
+                />
               </div>
 
               <div>
