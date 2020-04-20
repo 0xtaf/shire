@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <div>
       <Head>
         <title>Tayfun Sur Blog</title>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"></meta>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet" />
         
