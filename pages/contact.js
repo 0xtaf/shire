@@ -67,7 +67,6 @@ const Contact = () => {
             <h2>Contact</h2>
             <p>Do not hesitate to share your opinion or suggestion with me!</p>
           </div>
-
           <form action="" method="POST" onSubmit={handleOnSubmit}>
             <div className="form-row firstrow">
               <div>
@@ -123,26 +122,23 @@ const Contact = () => {
             <div className="success">{status.info.msg}</div>
           )}
           <style jsx>{`
-            .textWrapper {
-              margin-left: 31vw;
-              margin-top: -2%;
-            }
-            .textWrapper h2 {
-              font-size: 3em;
-              font-weight: 400;
-            }
-            .textWrapper p {
-              max-width: 35vw;
-              font-size: 1.2em;
-              margin-top: -2%;
-            }
-
-            form {
+            .contactWrapper {
               display: grid;
               grid-template-columns: 1fr;
-              padding: 40px;
+            }
+
+            form,
+            .textWrapper {
+              display: grid;
+              grid-template-columns: 1fr;
+              padding: 0 40px;
               margin: 0 28vw;
-              margin-top: -2%;
+            }
+            .textWrapper {
+              font-size: 1.5rem;
+            }
+            .textWrapper p {
+              margin-top: -2%
             }
 
             .form-row {
@@ -185,7 +181,7 @@ const Contact = () => {
             }
 
             textarea {
-              height: 35vh;
+              height: 32vh;
               padding-top: 1.5%;
               padding-bottom: 1.5%;
               min-height: 42px;
@@ -224,20 +220,17 @@ const Contact = () => {
             }
 
             @media (max-width: 1000px) {
+              form,
               .textWrapper {
-                margin-left: 27vw;
-              }
-              .textWrapper h2 {
-                font-size: 3em;
-                font-weight: 400;
-              }
-
-              form {
-                padding: 40px;
+                padding: 0 40px;
                 width: 55.5vw;
                 margin-left: auto;
                 margin-right: auto;
               }
+              .textWrapper {
+                font-size: 1.4rem;
+              }
+              
               .firstrow {
                 display: block;
               }
@@ -251,42 +244,28 @@ const Contact = () => {
                 width: 100%;
               }
               textarea {
-                height: 41vh;
+                height: 28vh;
               }
             }
 
             @media (max-width: 760px) {
+              form,
               .textWrapper {
-                margin-left: 21.6vw;
-              }
-              .textWrapper h2 {
-                font-size: 2.7em;
-                font-weight: 400;
-              }
-              .textWrapper p {
-                max-width: 49vw;
-              }
-              form {
                 width: 70.5vw;
+                font-size: 1.3rem;
               }
               textarea {
-                height: 31vh;
+                height: 24vh;
               }
+          
             }
             @media (max-width: 460px) {
+              form,
               .textWrapper {
-                margin-left: 14.6vw;
-              }
-              .textWrapper h2 {
-                font-size: 2.2em;
-                font-weight: 400;
-              }
-              .textWrapper p {
-                max-width: 58vw;
-              }
-              form {
                 width: 90.5vw;
+                font-size: 1.2rem;
               }
+        
             }
           `}</style>
         </div>
