@@ -4,6 +4,7 @@ import Writeup from '../../../Models/Writeup';
 dbConnect();
 
 export default async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
   const { method } = req;
 
   switch (method) {

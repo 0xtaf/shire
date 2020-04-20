@@ -1,9 +1,10 @@
 import dbConnect from '../../../utils/dbConnect';
 import Post from '../../../Models/Post';
-
 dbConnect();
 
 export default async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
+
   const { method } = req;
 
   switch (method) {
@@ -17,11 +18,9 @@ export default async (req, res) => {
       break;
     case 'POST':
       try {
-        
         const post = await Post.create(req.body);
-        
+
         res.status(201).json({ success: true, data: post });
-        
       } catch (error) {
         res.status(400).json({ success: false, message: console.log(error) });
       }

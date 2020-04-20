@@ -4,6 +4,7 @@ import Post from '../../../Models/Post';
 dbConnect();
 
 export default async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
   const title = req.query.urlSonu;
   const method = req.method;
 
