@@ -131,16 +131,18 @@ const Contact = () => {
             .textWrapper {
               display: grid;
               grid-template-columns: 1fr;
-              padding: 0 40px;
-              margin: 0 28vw;
+              
+              margin: 0 26vw;
             }
             .textWrapper {
-              font-size: 1.5rem;
+              font-size: 1.3rem;
             }
             .textWrapper p {
               margin-top: -2%
             }
-
+            h2 {
+              font-size: 2em;
+            }
             .form-row {
               margin-bottom: 20px;
             }
@@ -181,7 +183,7 @@ const Contact = () => {
             }
 
             textarea {
-              height: 32vh;
+              height: 28.5vh;
               padding-top: 1.5%;
               padding-bottom: 1.5%;
               min-height: 42px;
@@ -244,7 +246,7 @@ const Contact = () => {
                 width: 100%;
               }
               textarea {
-                height: 28vh;
+                height: 25vh;
               }
             }
 
@@ -257,6 +259,9 @@ const Contact = () => {
               textarea {
                 height: 24vh;
               }
+              h2 {
+                font-size: 1.3em;
+              }
           
             }
             @media (max-width: 460px) {
@@ -264,6 +269,9 @@ const Contact = () => {
               .textWrapper {
                 width: 90.5vw;
                 font-size: 1.2rem;
+              }
+              h2 {
+                font-size: 1.3em;
               }
         
             }
