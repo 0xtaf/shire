@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-const connection = {};
-
 async function dbConnect() {
   if (connection.isConnected) {
     return;
@@ -15,5 +13,8 @@ async function dbConnect() {
   connection.isConnected = db.connections[0].readyState;
   console.log(connection)
 }
+
+
+
 
 export default dbConnect

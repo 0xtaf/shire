@@ -90,7 +90,7 @@ const BlogPost = ({ post }) => (
 BlogPost.getInitialProps = async({ req, query }) => {
   const slug = query.slug;
   const res = await fetch(`https://tayfunsur.com/api/posts/${slug}`);
-  console.log("ressssss", res)
+
   const { data } = await res.json();
 
   return {

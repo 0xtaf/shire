@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/blogIndex.module.css';
-
+import connect from 'next-connect';
 const Blog = ({ posts }) => (
   <Layout>
     <div className="container">
@@ -49,10 +49,9 @@ const Blog = ({ posts }) => (
 
 Blog.getInitialProps = async () => {
   const res = await fetch('https://tayfunsur.com/api/posts/blogs');
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
   const { data } = await res.json();
 
-  return {  posts: data };
-}
+  return { posts: data };
+};
 
 export default Blog;

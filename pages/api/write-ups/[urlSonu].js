@@ -4,14 +4,11 @@ import Writeup from '../../../Models/Writeup';
 dbConnect();
 
 export default async (req, res) => {
-  
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
   const title = req.query.urlSonu;
   const method = req.method;
 
   switch (method) {
     case 'GET':
-      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         const writeup = await Writeup.findOne({ slug: title });
 
@@ -24,7 +21,6 @@ export default async (req, res) => {
       }
       break;
     case 'PUT':
-      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         const writeup = await Writeup.findByIdAndUpdate(id, req.body, {
           new: true,
@@ -39,7 +35,6 @@ export default async (req, res) => {
       }
       break;
     case 'DELETE':
-      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         const deletedWriteup = await Writeup.deleteOne({ _id: id });
 
@@ -53,7 +48,6 @@ export default async (req, res) => {
       }
       break;
     default:
-      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       res.status(400).json({ success: false });
       break;
   }
