@@ -49,6 +49,7 @@ const Blog = ({ posts }) => (
 
 Blog.getInitialProps = async () => {
   const res = await fetch('https://tayfunsur.com/api/posts/blogs');
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
   const { data } = await res.json();
 
   return {  posts: data };

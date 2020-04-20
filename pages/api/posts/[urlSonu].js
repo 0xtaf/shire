@@ -10,6 +10,7 @@ export default async (req, res) => {
 
   switch (method) {
     case 'GET':
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         const post = await Post.findOne({ slug: title });
 
@@ -22,6 +23,7 @@ export default async (req, res) => {
       }
       break;
     case 'PUT':
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         const post = await Post.findByIdAndUpdate(id, req.body, {
           new: true,
@@ -36,6 +38,7 @@ export default async (req, res) => {
       }
       break;
     case 'DELETE':
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         const deletedPost = await Post.deleteOne({ _id: id });
 
@@ -49,6 +52,7 @@ export default async (req, res) => {
       }
       break;
     default:
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       res.status(400).json({ success: false });
       break;
   }

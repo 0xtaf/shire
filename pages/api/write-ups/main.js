@@ -9,6 +9,7 @@ export default async (req, res) => {
 
   switch (method) {
     case 'GET':
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         const writeup = await Writeup.find({});
         res.status(200).json({ success: true, data: writeup });
@@ -17,6 +18,7 @@ export default async (req, res) => {
       }
       break;
     case 'POST':
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.tayfunsur.com');
       try {
         
         const writeup = await Writeup.create(req.body);
