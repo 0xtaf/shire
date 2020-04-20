@@ -54,7 +54,7 @@ const Writeup = ({ posts }) => (
 );
 
 Writeup.getInitialProps = async () => {
-  const res = await fetch('https://tayfunsur.com/api/write-ups/main');
+  const res = await fetch('https://www.tayfunsur.com/api/write-ups/main');
   const { data } = await res.json();
   return {
     

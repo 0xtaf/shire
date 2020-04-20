@@ -89,7 +89,7 @@ const WriteUp = ({ writeup }) => (
 // }
 WriteUp.getInitialProps = async({ req, query }) => {
   const slug = query.slug;
-  const res = await fetch(`https://tayfunsur.com/api/write-ups/${slug}`);
+  const res = await fetch(`https://www.tayfunsur.com/api/write-ups/${slug}`);
   const { data } = await res.json();
   
 

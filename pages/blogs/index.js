@@ -48,7 +48,7 @@ const Blog = ({ posts }) => (
 );
 
 Blog.getInitialProps = async () => {
-  const res = await fetch('https://tayfunsur.com/api/posts/blogs');
+  const res = await fetch('https://www.tayfunsur.com/api/posts/blogs');
   const { data } = await res.json();
 
   return { posts: data };
