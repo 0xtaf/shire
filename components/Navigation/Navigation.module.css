@@ -11,6 +11,10 @@
   padding: 0 13%;
 }
 
+.nav a:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 500px) {
   .nav {
     grid-template-columns: repeat(4, 1fr);
