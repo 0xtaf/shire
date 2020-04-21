@@ -1,8 +1,9 @@
 import Head from 'next/head';
-import fetch from 'isomorphic-unfetch';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/slugs.module.css';
 const ReactMarkdown = require('react-markdown');
+import dbConnect from '../../utils/dbConnect';
+import Post from '../../Models/Post';
 
 const BlogPost = ({ post }) => (
   <Layout>
@@ -26,31 +27,33 @@ const BlogPost = ({ post }) => (
     </div>
   </Layout>
 );
-// export async function getStaticPaths() {
-//   const data = await fetch('https://tayfunsur.com/api/posts/blogs');
-//   const json = await data.json();
+export async function getStaticPaths() {
+  dbConnect();
 
-//   const paths = json.data.map((item) => {
-//     return {
-//       params: {
-//         slug: `${item.slug}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
-//       },
-//     };
-//   });
-//   return {
-//     paths,
-//     fallback: false, // See the "fallback" section below
-//   };
-// }
-BlogPost.getInitialProps = async ({ req, query }) => {
-  const slug = query.slug;
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`);
+  const postx = await Post.find({});
+  const postz = await JSON.parse(JSON.stringify(postx));
+  const paths = await postz.map((item) => {
+    return {
+      params: {
+        slug: `${item.slug}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
+      },
+    };
+  });
+  return {
+    paths,
+    fallback: false, // See the "fallback" section below
+  };
+}
+export async function getStaticProps({ params }) {
+  dbConnect();
+  const slug = params.slug;
 
-  const { data } = await res.json();
+  const postx = await Post.findOne({ slug: slug });
+  const postz = await JSON.parse(JSON.stringify(postx));
 
   return {
-    post: data,
+    props: { post: postz },
   };
-};
+}
 
 export default BlogPost;

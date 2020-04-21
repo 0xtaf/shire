@@ -3,7 +3,7 @@ import React from 'react';
 const AddForm = () => {
   return (
     <div>
-      <form action="/api/posts" method="POST">
+      <form action="/api/posts/blogCreate" method="POST">
         <div className="form-row">
           <label htmlFor="title">Title</label>
           <input

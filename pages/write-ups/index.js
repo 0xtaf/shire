@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/blogIndex.module.css';
+import dbConnect from '../../utils/dbConnect';
+import Writeup from '../../Models/Writeup';
 
-const Writeup = ({ posts }) => (
+const Writeups = ({ posts }) => (
   <Layout>
     <div className="container">
       <div className={classes.wrapper}>
@@ -53,14 +54,12 @@ const Writeup = ({ posts }) => (
   </Layout>
 );
 
-Writeup.getInitialProps = async () => {
-  const res = await fetch('https://www.tayfunsur.com/api/write-ups/main');
-  const { data } = await res.json();
-  return {
-    
-      posts: data,
-   
-  };
+export async function getStaticProps() {
+  dbConnect();
+
+  const writeupx = await Writeup.find({});
+  const writeupz = await JSON.parse(JSON.stringify(writeupx));
+  return { props: { posts: writeupz } };
 }
 
-export default Writeup;
+export default Writeups;

@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/blogIndex.module.css';
-import connect from 'next-connect';
+import dbConnect from '../../utils/dbConnect';
+import Post from '../../Models/Post';
+
 const Blog = ({ posts }) => (
   <Layout>
     <div className="container">
@@ -47,11 +48,12 @@ const Blog = ({ posts }) => (
   </Layout>
 );
 
-Blog.getInitialProps = async () => {
-  const res = await fetch('https://www.tayfunsur.com/api/posts/blogs');
-  const { data } = await res.json();
+export async function getStaticProps(req, res) {
+  dbConnect();
 
-  return { posts: data };
-};
+  const postx = await Post.find({});
+  const postz = await JSON.parse(JSON.stringify(postx));
+  return { props: { posts: postz } };
+}
 
 export default Blog;

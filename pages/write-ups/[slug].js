@@ -1,10 +1,11 @@
 import Head from 'next/head';
-import fetch from 'isomorphic-unfetch';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/slugs.module.css';
 const ReactMarkdown = require('react-markdown');
+import dbConnect from '../../utils/dbConnect';
+import Writeup from '../../Models/Writeup';
 
-const WriteUp = ({ writeup }) => (
+const WriteupIndividual = ({ writeup }) => (
   <Layout>
     <div className={classes.container}>
       <Head>
@@ -25,30 +26,30 @@ const WriteUp = ({ writeup }) => (
     </div>
   </Layout>
 );
-// export async function getStaticPaths() {
-//   const data = await fetch('https://tayfunsur.com/api/write-ups/main');
-//   const json = await data.json();
-
-//   const paths = json.data.map((item) => {
-//     return {
-//       params: {
-//         slug: `${item.slug}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
-//       },
-//     };
-//   });
-//   return {
-//     paths,
-//     fallback: false, // See the "fallback" section below
-//   };
-// }
-WriteUp.getInitialProps = async ({ req, query }) => {
-  const slug = query.slug;
-  const res = await fetch(`http://localhost:3000/api/write-ups/${slug}`);
-  const { data } = await res.json();
-
+export async function getStaticPaths() {
+  dbConnect();
+  const writeupx = await Writeup.find({});
+  const writeupz = await JSON.parse(JSON.stringify(writeupx));
+  const paths = await writeupz.map((item) => {
+    return {
+      params: {
+        slug: `${item.slug}`, //pid blogs/[pid] rotasıyla aynı isimde olmalı.
+      },
+    };
+  });
   return {
-    writeup: data,
+    paths,
+    fallback: false, // See the "fallback" section below
   };
-};
+}
+export async function getStaticProps({ params }) {
+  dbConnect();
+  const slug = params.slug;
+  const writeupx = await Writeup.findOne({ slug: slug });
+  const writeupz = await JSON.parse(JSON.stringify(writeupx));
+  return {
+    props: { writeup: writeupz },
+  };
+}
 
-export default WriteUp;
+export default WriteupIndividual;

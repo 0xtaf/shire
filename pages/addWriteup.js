@@ -3,7 +3,7 @@ import React from 'react';
 const AddForm = () => {
   return (
     <div>
-      <form action="/api/write-ups" method="POST">
+      <form action="/api/write-ups/writeupCreate" method="POST">
         <div className="form-row">
           <label htmlFor="title">Title</label>
           <input
