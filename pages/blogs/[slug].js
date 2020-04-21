@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/slugs.module.css';
 const ReactMarkdown = require('react-markdown');
@@ -7,23 +6,20 @@ import Post from '../../Models/Post';
 
 const BlogPost = ({ post }) => (
   <Layout>
-    <div className={classes.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className={classes.bg}>
+      <div className={classes.container}>
+        <div className={classes.blog}>
+          <h2 className={classes.blogTitle}>
+            <a className={classes.blogTitleLink}>{post.title}</a>
+          </h2>
+          <hr />
+          <ReactMarkdown source={post.details} className={classes.blogText} />
 
-      <div className={classes.blog}>
-        <h2 className={classes.blogTitle}>
-          <a className={classes.blogTitleLink}>{post.title}</a>
-        </h2>
-        <hr />
-        <ReactMarkdown source={post.details} className={classes.blogText} />
+          <div className={classes.blogDate}>{post.date}</div>
+        </div>
 
-        <div className={classes.blogDate}>{post.date}</div>
+        <style jsx>{``}</style>
       </div>
-
-      <style jsx>{``}</style>
     </div>
   </Layout>
 );

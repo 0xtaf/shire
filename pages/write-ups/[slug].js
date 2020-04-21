@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/slugs.module.css';
 const ReactMarkdown = require('react-markdown');
@@ -6,25 +5,26 @@ import dbConnect from '../../utils/dbConnect';
 import Writeup from '../../Models/Writeup';
 
 const WriteupIndividual = ({ writeup }) => (
-  <Layout>
-    <div className={classes.container}>
-      <Head>
-        <title>Create Next App</title>
-      </Head>
+  <div className={classes.bg}>
+    <Layout>
+      <div className={classes.container}>
+        <div className={classes.blog}>
+          <h2 className={classes.blogTitle}>
+            <a className={classes.blogTitleLink}>{writeup.title}</a>
+          </h2>
+          <hr />
+          <ReactMarkdown
+            source={writeup.details}
+            className={classes.blogText}
+          />
 
-      <div className={classes.blog}>
-        <h2 className={classes.blogTitle}>
-          <a className={classes.blogTitleLink}>{writeup.title}</a>
-        </h2>
-        <hr />
-        <ReactMarkdown source={writeup.details} className={classes.blogText} />
+          <div className={classes.blogDate}>{writeup.date}</div>
+        </div>
 
-        <div className={classes.blogDate}>{writeup.date}</div>
+        <style jsx>{``}</style>
       </div>
-
-      <style jsx>{``}</style>
-    </div>
-  </Layout>
+    </Layout>
+  </div>
 );
 export async function getStaticPaths() {
   dbConnect();

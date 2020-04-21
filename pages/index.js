@@ -8,7 +8,7 @@ const Home = () => (
       <div className={classes.container}>
         <h1 className={classes.header}>tayfun sur</h1>
         <p className={classes.p1}>an aspiring full stack web developer</p>
-        <p className={classes.p2}>and a web application security enthusiast</p>
+        <p className={classes.p2}>and a web security enthusiast</p>
 
         <div className={classes.link}>
           <Link href="//www.twitter.com/_tsur">
@@ -36,20 +36,17 @@ const Home = () => (
 
         <style jsx>{`
           h1 {
-            font-weight: 100;
+            font-weight: 300;
             text-transform: uppercase;
             font-size: 3em;
           }
 
           p {
             font-size: 2.7em;
+            font-style: oblique;
+            font-weight: 300;
           }
-          a {
-            border: 1px solid #ccc;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 100%;
-          }
+
 
           ul {
             margin: 0;

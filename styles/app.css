@@ -3,6 +3,8 @@ body, wrapper {
   padding: 0;
   margin: 0;
   font-family: 'Roboto Slab', serif;
+  background-color: rgb(249, 248, 253);
+  height: 100vh;
 }
 
 * {

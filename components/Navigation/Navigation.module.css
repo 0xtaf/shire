@@ -15,10 +15,10 @@
   cursor: pointer;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 650px) {
   .nav {
     grid-template-columns: repeat(4, 1fr);
-    margin-right: 0;
+    margin-right: 2vw;
     padding-bottom: 2%;
   }
   .nav a {
