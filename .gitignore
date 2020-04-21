@@ -35,3 +35,5 @@ yarn-error.log*
 sendgrid.env
 
 .now
+now.json
+./now.json
