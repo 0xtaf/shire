@@ -35,18 +35,6 @@ const Home = () => (
         </div>
 
         <style jsx>{`
-          @font-face {
-            font-family: 'Roboto Slab', serif;
-            src: url('/fonts/RobotoSlab-Bold.ttf');
-            src: url('/fonts/RobotoSlab-Light.ttf');
-            src: url('/fonts/RobotoSlab-Regular.ttf');
-          }
-          body {
-            font-family: 'Roboto Slab', serif;
-          }
-          p {
-            font-family: 'Roboto Slab', serif;
-          }
           h1 {
             font-weight: 300;
             text-transform: uppercase;

@@ -8,10 +8,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap"
-          rel="stylesheet"
-        />
+
         <title>Tayfun Sur Personal Website</title>
         <meta
           name="viewport"
@@ -33,21 +30,6 @@ const Layout = ({ children }) => {
       <main>{children}</main>
       <footer></footer>
       <style jsx>{`
-        @font-face {
-          font-family: 'Roboto Slab', serif;
-          src: url('/fonts/RobotoSlab-Bold.ttf');
-          src: url('/fonts/RobotoSlab-Light.ttf');
-          src: url('/fonts/RobotoSlab-Regular.ttf');
-        }
-        body {
-          font-family: 'Roboto Slab', serif;
-        }
-        title {
-          font-family: 'Roboto Slab', serif;
-        }
-        p {
-          font-family: 'Roboto Slab', serif;
-        }
         a {
           font-weight: 500;
         }

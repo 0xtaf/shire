@@ -122,18 +122,6 @@ const Contact = () => {
             <div className="success">{status.info.msg}</div>
           )}
           <style jsx>{`
-            @font-face {
-              font-family: 'Roboto Slab', serif;
-              src: url('/fonts/RobotoSlab-Bold.ttf');
-              src: url('/fonts/RobotoSlab-Light.ttf');
-              src: url('/fonts/RobotoSlab-Regular.ttf');
-            }
-            body {
-              font-family: 'Roboto Slab', serif;
-            }
-            p {
-              font-family: 'Roboto Slab', serif;
-            }
             .contactWrapper {
               display: grid;
               grid-template-columns: 1fr;

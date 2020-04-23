@@ -31,18 +31,6 @@ const Home = () => (
         </p>
       </div>
       <style jsx>{`
-        @font-face {
-          font-family: 'Roboto Slab', serif;
-          src: url('/fonts/RobotoSlab-Bold.ttf');
-          src: url('/fonts/RobotoSlab-Light.ttf');
-          src: url('/fonts/RobotoSlab-Regular.ttf');
-        }
-        p {
-          font-family: 'Roboto Slab', serif;
-        }
-        body {
-          font-family: 'Roboto Slab', serif;
-        }
         .aboutWrapper {
           display: grid;
           grid-template-column. 1fr;
