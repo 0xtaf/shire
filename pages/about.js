@@ -40,6 +40,9 @@ const Home = () => (
         p {
           font-family: 'Roboto Slab', serif;
         }
+        body {
+          font-family: 'Roboto Slab', serif;
+        }
         .aboutWrapper {
           display: grid;
           grid-template-column. 1fr;

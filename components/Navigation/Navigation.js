@@ -22,7 +22,10 @@ function Navigation() {
           src: url('/fonts/RobotoSlab-Light.ttf');
           src: url('/fonts/RobotoSlab-Regular.ttf');
         }
-        a {
+        body {
+          font-family: 'Roboto Slab', serif;
+        }
+        nav a {
           font-family: 'Roboto Slab', serif;
         }
       `}</style>

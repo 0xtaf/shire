@@ -41,6 +41,9 @@ const Home = () => (
             src: url('/fonts/RobotoSlab-Light.ttf');
             src: url('/fonts/RobotoSlab-Regular.ttf');
           }
+          body {
+            font-family: 'Roboto Slab', serif;
+          }
           p {
             font-family: 'Roboto Slab', serif;
           }

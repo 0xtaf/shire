@@ -128,7 +128,7 @@ const Contact = () => {
               src: url('/fonts/RobotoSlab-Light.ttf');
               src: url('/fonts/RobotoSlab-Regular.ttf');
             }
-            title {
+            body {
               font-family: 'Roboto Slab', serif;
             }
             p {
