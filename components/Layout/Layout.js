@@ -33,6 +33,15 @@ const Layout = ({ children }) => {
       <main>{children}</main>
       <footer></footer>
       <style jsx>{`
+        @font-face {
+          font-family: 'Roboto Slab', serif;
+          src: url('/fonts/RobotoSlab-Bold.ttf');
+          src: url('/fonts/RobotoSlab-Light.ttf');
+          src: url('/fonts/RobotoSlab-Regular.ttf');
+        }
+        p {
+          font-family: 'Roboto Slab', serif;
+        }
         a {
           font-weight: 500;
         }
