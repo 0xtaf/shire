@@ -109,9 +109,9 @@ const Contact = () => {
               <button type="submit" disabled={status.submitting}>
                 {!status.submitting
                   ? !status.submitted
-                    ? 'Submit'
-                    : 'Submitted'
-                  : 'Submitting...'}
+                    ? 'Send'
+                    : 'Sent'
+                  : 'Sending...'}
               </button>
             </div>
           </form>

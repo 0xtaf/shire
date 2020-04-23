@@ -8,11 +8,16 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap"
+          rel="stylesheet"
+        />
         <title>Tayfun Sur Personal Website</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"></meta>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+        ></meta>
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet" />
-        
       </Head>
       <header className={classes.header}>
         <div className={classes.name}>
@@ -29,11 +34,10 @@ const Layout = ({ children }) => {
       <footer></footer>
       <style jsx>{`
         a {
-          font-weight: 500
+          font-weight: 500;
         }
       `}</style>
     </div>
-    
   );
 };
 
