@@ -15,6 +15,17 @@ function Navigation() {
       <Link href="/contact">
         <a>Contact</a>
       </Link>
+      <style jsx>{`
+        @font-face {
+          font-family: 'Roboto Slab', serif;
+          src: url('/fonts/RobotoSlab-Bold.ttf');
+          src: url('/fonts/RobotoSlab-Light.ttf');
+          src: url('/fonts/RobotoSlab-Regular.ttf');
+        }
+        a {
+          font-family: 'Roboto Slab', serif;
+        }
+      `}</style>
     </nav>
   );
 }

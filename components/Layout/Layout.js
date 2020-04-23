@@ -39,6 +39,9 @@ const Layout = ({ children }) => {
           src: url('/fonts/RobotoSlab-Light.ttf');
           src: url('/fonts/RobotoSlab-Regular.ttf');
         }
+        title {
+          font-family: 'Roboto Slab', serif;
+        }
         p {
           font-family: 'Roboto Slab', serif;
         }
