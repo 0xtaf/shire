@@ -131,14 +131,14 @@ const Contact = () => {
             .textWrapper {
               display: grid;
               grid-template-columns: 1fr;
-
+              
               margin: 0 26vw;
             }
             .textWrapper {
               font-size: 1.3rem;
             }
             .textWrapper p {
-              margin-top: -2%;
+              margin-top: -2%
             }
             h2 {
               font-size: 2em;
@@ -232,7 +232,7 @@ const Contact = () => {
               .textWrapper {
                 font-size: 1.4rem;
               }
-
+              
               .firstrow {
                 display: block;
               }
@@ -262,6 +262,7 @@ const Contact = () => {
               h2 {
                 font-size: 1.3em;
               }
+          
             }
             @media (max-width: 460px) {
               form,
@@ -272,6 +273,7 @@ const Contact = () => {
               h2 {
                 font-size: 1.3em;
               }
+        
             }
           `}</style>
         </div>
