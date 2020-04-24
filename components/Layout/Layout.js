@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Head>
-
+       
         <title>Tayfun Sur Personal Website</title>
         <meta
           name="viewport"
