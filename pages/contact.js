@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout/Layout';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Contact = () => {
   const [status, setStatus] = useState({
@@ -7,7 +8,9 @@ const Contact = () => {
     submitting: false,
     info: { error: false, msg: null },
   });
-
+  const [captcha, setCaptcha] = useState({
+    isValue: false,
+  });
   const [inputs, setInputs] = useState({
     email: '',
     message: '',
@@ -48,17 +51,30 @@ const Contact = () => {
   };
 
   const handleOnSubmit = async (e) => {
-    e.preventDefault();
-    setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
-    const res = await fetch('/api/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inputs),
-    });
-    const text = await res.text();
-    handleResponse(res.status, text);
+    if (captcha.isValue) {
+      e.preventDefault();
+      setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputs),
+      });
+      const text = await res.text();
+      handleResponse(res.status, text);
+    } else {
+      alert('No robots are allowed. Sorry...');
+    }
+  };
+
+  const onChangeHandler = (value) => {
+    if (value) {
+      setCaptcha({ isValue: true });
+      console.log(value);
+    } else {
+      setCaptcha({ isValue: false });
+    }
   };
 
   return (
@@ -107,16 +123,27 @@ const Contact = () => {
                 value={inputs.message}
               />
             </div>
-            <div className="form-row">
-              <button type="submit" disabled={status.submitting}>
+            <div className="form-row lastrow">
+              <button
+                className={captcha.isValue ? 'notRobot' : 'robot'}
+                type="submit"
+                disabled={status.submitting || captcha.isValue === false}
+              >
                 {!status.submitting
                   ? !status.submitted
                     ? 'Send'
                     : 'Sent'
                   : 'Sending...'}
               </button>
+              <span className="captchav2">
+                <ReCAPTCHA
+                  sitekey="6LevZO0UAAAAADbm-Og3J3i8SJPv79vJYfqYB5O0"
+                  onChange={onChangeHandler}
+                />
+              </span>
             </div>
           </form>
+
           {status.info.error && (
             <div className="error">Error: {status.info.msg}</div>
           )}
@@ -152,6 +179,11 @@ const Contact = () => {
             .firstrow {
               display: grid;
               grid-template-columns: 1fr 1fr;
+            }
+            .lastrow {
+              display: grid;
+              grid-template-columns: 1fr 3fr;
+              grid-gap: 2rem;
             }
 
             .form-row > label {
@@ -200,9 +232,17 @@ const Contact = () => {
             }
 
             button[type='submit'] {
-              margin-left: 10px;
               color: white;
+            }
+
+            .robot {
+              background-color: #ddd;
+            }
+            .notRobot {
               background-color: rgb(68, 176, 255);
+            }
+            .captchav2 {
+              overflow: hidden;
             }
 
             input[type='text']::placeholder,
@@ -268,7 +308,7 @@ const Contact = () => {
             @media (max-width: 460px) {
               form,
               .textWrapper {
-                width: 90.5vw;
+                width: 100.5vw;
                 font-size: 1.2rem;
               }
               h2 {
