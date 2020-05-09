@@ -57,7 +57,7 @@ const Writeups = ({ posts }) => (
 export async function getStaticProps() {
   dbConnect();
 
-  const writeupx = await Writeup.find({});
+  const writeupx = await Writeup.find({}, 'id title slug');
   const writeupz = await JSON.parse(JSON.stringify(writeupx));
   return { props: { posts: writeupz } };
 }

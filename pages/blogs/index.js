@@ -51,7 +51,7 @@ const Blog = ({ posts }) => (
 export async function getStaticProps(req, res) {
   dbConnect();
 
-  const postx = await Post.find({});
+  const postx = await Post.find({}, 'id title slug');
   const postz = await JSON.parse(JSON.stringify(postx));
   return { props: { posts: postz } };
 }
