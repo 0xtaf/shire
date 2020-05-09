@@ -3,24 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server/index.js",
     "build": "next build",
     "start": "next start -p $PORT"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.5.8",
-    "@next/mdx": "^9.3.5",
-    "@sendgrid/mail": "^7.0.1",
+    "@mdx-js/loader": "^1.6.1",
+    "@next/mdx": "^9.3.6",
+    "@sendgrid/mail": "^7.1.0",
     "@zeit/next-css": "1.0.2-canary.2",
+    "bcrypt": "^4.0.1",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "dompurify": "^2.0.8",
+    "dompurify": "^2.0.11",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "marked": "^0.8.2",
-    "mongodb": "^3.5.6",
-    "mongoose": "^5.9.9",
-    "next": "^9.3.5",
-    "next-connect": "^0.6.3",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.13",
+    "morgan": "^1.10.0",
+    "next": "^9.3.6",
+    "next-connect": "^0.6.6",
     "next-fonts": "^1.1.0",
     "normalize.css": "^8.0.1",
     "raw-loader": "^4.0.1",
@@ -32,6 +36,7 @@
     "unslug": "^0.1.0"
   },
   "devDependencies": {
-    "prettier": "^2.0.4"
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5"
   }
 }

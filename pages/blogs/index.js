@@ -2,8 +2,8 @@ import Link from 'next/link';
 import slug from 'slug';
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/blogIndex.module.css';
-import dbConnect from '../../utils/dbConnect';
-import Post from '../../Models/Post';
+import dbConnect from '../../server/utils/dbConnect';
+import Post from '../../server/Models/Post';
 
 const Blog = ({ posts }) => (
   <Layout>

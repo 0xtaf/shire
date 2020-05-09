@@ -1,8 +1,8 @@
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/slugs.module.css';
 const ReactMarkdown = require('react-markdown');
-import dbConnect from '../../utils/dbConnect';
-import Writeup from '../../Models/Writeup';
+import dbConnect from '../../server/utils/dbConnect';
+import Writeup from '../../server/Models/Writeup';
 
 const WriteupIndividual = ({ writeup }) => (
   <div className={classes.bg}>

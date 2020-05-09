@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-import slug from 'slug';
+const slug = require('slug');
 
 const PostSchema = new mongoose.Schema({
   title: {
