@@ -1,10 +1,9 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
-const Panel = () => {
-
-
+const Signup = () => {
   return (
     <Layout>
+      <h4>Sign Up</h4>
       <form action="/api/userCreate" method="POST">
         <div className="form-row firstrow">
           <div>
@@ -17,11 +16,11 @@ const Panel = () => {
             <input id="password" type="password" name="password" required />
           </div>
 
-          <button type="submit">Sign up</button>
+          <button type="submit">Login</button>
         </div>
       </form>
     </Layout>
   );
 };
 
-export default Panel;
+export default Signup;
