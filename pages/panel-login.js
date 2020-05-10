@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
+
 const Login = () => {
   return (
     <Layout>
@@ -18,6 +19,12 @@ const Login = () => {
 
           <button type="submit">Login</button>
         </div>
+      </form>
+      <form action="/api/logout" method="POST">
+        
+
+          <button type="submit">Logout</button>
+        
       </form>
     </Layout>
   );

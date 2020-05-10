@@ -11,10 +11,14 @@ const User = require('../Models/User');
 dbConnect();
 
 const signToken = (userID) => {
-  return JWT.sign({
-    iss: 'TayfunSur',
-    sub: userID,
-  }, "process.env.JWT_SECRET", {expiresIn: "1h"});
+  return JWT.sign(
+    {
+      iss: 'TayfunSur',
+      sub: userID,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
 };
 
 function routes(app) {
@@ -39,20 +43,41 @@ function routes(app) {
     }
   });
 
+  router.get(
+    '/panel-login',
+    passport.authenticate('local', { session: false }),
+    (req, res, next) => {
+      if (req.isAuthenticated()) {
+        console.log(req.user);
+      } else {
+        console.log('not oten');
+      }
+    }
+  );
   router.post(
     '/panel-login',
     passport.authenticate('local', { session: false }),
-    async (req, res, next) => {
+    (req, res, next) => {
       if (req.isAuthenticated()) {
         const { _id, username, isAdmin } = req.user;
         const token = signToken(_id);
         res.cookie('access_token', token, { httpOnly: true, sameSite: true });
         res
           .status(200)
-          .json({ isAuthenticated: true, user: { username, isAdmin } });
+          .json({ token });
       }
     }
   );
+
+  router.get(
+    '/logout',
+    passport.authenticate('jwt', { session: false }),
+    (req, res, next) => {
+      res.clearCookie('access_token');
+      res.json({ user: { username: '' }, success: true });
+    }
+  );
+
   return router;
 }
 
