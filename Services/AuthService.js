@@ -30,9 +30,10 @@ export default {
       .then((data) => data);
   },
   isAuthenticated: () => {
+    console.log("isauth")
     return fetch('/api/authenticated').then((res) => {
       if (res.status !== 401) return res.json().then((data) => data);
-      else return { isAuthenticated: false, user: { username: '', role: '' } };
+      else return { isAuthenticated: false, user: { username: '', isAdmin: '' } };
     });
   },
 };

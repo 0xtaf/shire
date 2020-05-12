@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
 
 const AddForm = () => {
+  const {user,setUser,isAuthenticated,setIsAuthenticated} = useContext(AuthContext);
+  console.log(user);
+  console.log(isAuthenticated)
+
   return (
     <div>
       <form action="/api/posts/blogCreate" method="POST">
@@ -11,7 +16,6 @@ const AddForm = () => {
             type="text"
             name="title"
             placeholder="2412 steps to become a good blog writer"
-            
           />
         </div>
         <div className="form-row">
@@ -22,7 +26,6 @@ const AddForm = () => {
             rows="10"
             name="details"
             placeholder="The earth is flat and the ones who deny that are ignorant..."
-            
           />
         </div>
         <div className="form-row">
@@ -93,5 +96,9 @@ const AddForm = () => {
     </div>
   );
 };
+
+// export async function getStaticProps(req, res) {
+//   console.log("bişey yapma")
+// }
 
 export default AddForm;
