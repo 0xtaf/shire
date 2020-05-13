@@ -21,7 +21,7 @@ export default ({ children }) => {
   return (
     <div>
       <AuthContext.Provider
-        value={{ user, setUser, isAuthenticated, setIsAuthenticated }}
+        value={{ user, setUser, isAuthenticated, setIsAuthenticated ,isLoaded, setIsLoaded}}
       >
         {children}
       </AuthContext.Provider>

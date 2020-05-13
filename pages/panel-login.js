@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import AuthService from '../Services/AuthService';
+import { AuthContext } from '../Context/AuthContext';
+import Message from '../components/Message/Message';
+
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 
 const Login = () => {
+  const [user, setUser] = useState({ username: '', password: '' });
+  const [message, setMessage] = useState(null);
+  const authContext = useContext(AuthContext);
+  const router = useRouter();
+  const onChange = (e) => {
+    e.preventDefault();
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    AuthService.login(user).then((data) => {
+      const { isAuthenticated, user, message } = data;
+      if (isAuthenticated) {
+        authContext.setUser(user);
+        authContext.setIsAuthenticated(isAuthenticated);
+        router.push('/addPost');
+      } else {
+        setMessage(message);
+      }
+    });
+  };
+
   return (
     <Layout>
       <div className="container">
@@ -9,23 +38,36 @@ const Login = () => {
           <div className="textWrapper">
             <h4>Login</h4>
           </div>
-          <form action="/api/panel-login" method="POST">
+          <form onSubmit={onSubmit}>
             <div className="form-row firstrow">
               <div>
                 <label htmlFor="username">Username</label>
-                <input id="username" type="text" name="username" required />
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  onChange={onChange}
+                  required
+                />
               </div>
             </div>
             <div className="form-row lastrow">
               <div>
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" name="password" required />
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  onChange={onChange}
+                  required
+                />
               </div>
 
-            <button type="submit">Login</button>
+              <button type="submit">Log in</button>
             </div>
+            {message ? <Message message={message} /> : null}
           </form>
-          
+
           <style jsx>{`
             .contactWrapper {
               display: grid;
@@ -110,7 +152,6 @@ const Login = () => {
             }
             .form-row div:last-child {
               display: inline-block;
-              
             }
 
             @media (max-width: 1000px) {
