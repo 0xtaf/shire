@@ -14,7 +14,7 @@ function routes(app) {
     async (req, res, next) => {
       const user = await User.findById({ _id: req.user._id });
       if (user.isAdmin === true)
-        res.status(403).json({ isAdmin: user.isAdmin, authenticated: true });
+        res.status(201).json({ isAdmin: user.isAdmin, authenticated: true });
       else console.log('no admin');
       res.status(403).json({ isAdmin: user.isAdmin, authenticated: false });
     }
@@ -23,7 +23,7 @@ function routes(app) {
   router.get(
     '/authenticated',
     passport.authenticate('jwt', { session: false }),
-    (req, res, next) => {
+    (req, res) => {
       const { username, isAdmin } = req.user;
       res
         .status(200)

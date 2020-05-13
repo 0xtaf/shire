@@ -23,12 +23,16 @@ const signToken = (userID) => {
 
 function routes(app) {
   router.post('/userCreate', async (req, res, next) => {
-    const { username, password, isAdmin } = req.body;
+    const { username, password } = req.body;
 
     try {
       const userFound = await User.findOne({ username });
       if (userFound) {
-        res.status(400).json({ message: 'Username is already taken' });
+        res
+          .status(400)
+          .json({
+            message: { msgBody: 'Username is already taken', msgError: true },
+          });
       } else {
         const userInput = {
           username: req.body.username,
@@ -36,24 +40,22 @@ function routes(app) {
         };
         const user = new User(userInput);
         await user.save();
-        res.status(201).json({ success: true, data: user });
+        res
+          .status(201)
+          .json({
+            message: {
+              msgBody: 'Account successfully created',
+              msgError: false,
+            },
+          });
       }
     } catch (err) {
-      return next(err);
+      res
+        .status(500)
+        .json({ message: { msgBody: 'Error has occured', msgError: true } });
     }
   });
 
-  router.get(
-    '/panel-login',
-    passport.authenticate('local', { session: false }),
-    (req, res, next) => {
-      if (req.isAuthenticated()) {
-        console.log(req.user);
-      } else {
-        console.log('not oten');
-      }
-    }
-  );
   router.post(
     '/panel-login',
     passport.authenticate('local', { session: false }),
@@ -64,7 +66,7 @@ function routes(app) {
         res.cookie('access_token', token, { httpOnly: true, sameSite: true });
         res
           .status(200)
-          .json({ token });
+          .json({ isAuthenticated: true, user: { username, isAdmin } });
       }
     }
   );

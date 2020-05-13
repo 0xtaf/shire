@@ -1,7 +1,45 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import AuthService from '../Services/AuthService';
+import Message from '../components/Message/Message';
+
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 
 const Signup = () => {
+  const [user, setUser] = useState({ username: '', password: '' });
+  const [message, setMessage] = useState(null);
+  const router = useRouter();
+  let timerID = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerID);
+    };
+  }, []);
+  const onChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const resetForm = () => {
+    setUser({ username: '', password: '' });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    AuthService.register(user).then((data) => {
+      console.log('register data', data);
+      const { message } = data;
+      setMessage(message);
+      resetForm();
+      if (!message.msgError) {
+        timerID = setTimeout(() => {
+          router.push('/panel-login');
+        }, 2000);
+      }
+      
+    });
+  };
+
   return (
     <Layout>
       <div className="container">
@@ -9,23 +47,37 @@ const Signup = () => {
           <div className="textWrapper">
             <h4>Sign Up</h4>
           </div>
-          <form action="/api/userCreate" method="POST">
+          <form onSubmit={onSubmit}>
             <div className="form-row firstrow">
               <div>
                 <label htmlFor="username">Username</label>
-                <input id="username" type="text" name="username" required />
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  onChange={onChange}
+                  required
+                />
               </div>
             </div>
             <div className="form-row lastrow">
               <div>
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" name="password" required />
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  onChange={onChange}
+                  required
+                />
               </div>
 
-            <button type="submit">Login</button>
+              <button type="submit">Sign Up</button>
             </div>
+
+            {message ? <Message message={message} /> : null}
           </form>
-          
+
           <style jsx>{`
             .contactWrapper {
               display: grid;
@@ -110,7 +162,6 @@ const Signup = () => {
             }
             .form-row div:last-child {
               display: inline-block;
-              
             }
 
             @media (max-width: 1000px) {
@@ -167,4 +218,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
