@@ -1,6 +1,5 @@
 export default {
   login: (user) => {
-    console.log(user);
     return fetch('/api/panel-login', {
       method: 'post',
       body: JSON.stringify(user),
@@ -18,7 +17,6 @@ export default {
     });
   },
   register: (user) => {
-    console.log(user);
     return fetch('/api/userCreate', {
       method: 'post',
       body: JSON.stringify(user),

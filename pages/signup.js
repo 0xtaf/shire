@@ -27,7 +27,6 @@ const Signup = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     AuthService.register(user).then((data) => {
-      console.log('register data', data);
       const { message } = data;
       setMessage(message);
       resetForm();

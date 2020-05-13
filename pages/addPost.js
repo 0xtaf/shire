@@ -111,9 +111,4 @@ const AddForm = () => {
     return <div>Loading...</div>;
   }
 };
-
-// export async function getStaticProps(req, res) {
-//   console.log("bişey yapma")
-// }
-
 export default AddForm;

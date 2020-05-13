@@ -71,7 +71,6 @@ const Contact = () => {
   const onChangeHandler = (value) => {
     if (value) {
       setCaptcha({ isValue: true });
-      console.log(value);
     } else {
       setCaptcha({ isValue: false });
     }

@@ -15,7 +15,6 @@ function routes(app) {
       const user = await User.findById({ _id: req.user._id });
       if (user.isAdmin === true)
         res.status(201).json({ isAdmin: user.isAdmin, authenticated: true });
-      else console.log('no admin');
       res.status(403).json({ isAdmin: user.isAdmin, authenticated: false });
     }
   );
