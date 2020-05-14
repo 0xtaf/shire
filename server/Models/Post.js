@@ -12,10 +12,16 @@ const PostSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    default: Date.now()
+    default: Date.now(),
   },
   slug: {
     type: String,
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ['technical', 'writeup', 'life'],
+    default: 'life',
   },
 });
 
@@ -23,6 +29,5 @@ PostSchema.pre('save', function (next) {
   this.slug = slug(this.title);
   next();
 });
-
 
 module.exports = mongoose.models.Post || mongoose.model('Post', PostSchema);

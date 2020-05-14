@@ -1,14 +1,18 @@
 .nav {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* grid-column-start: 2; */
   align-items: center;
   justify-items: center;
   margin-right: 10vw;
 }
 
+.nav a:first-child {
+  grid-column-start: 2;
+}
+
 .nav a {
   padding: 0 13%;
+  font-size: 1.3em;
 }
 
 .nav a:hover {
@@ -17,14 +21,14 @@
 
 @media (max-width: 650px) {
   .nav {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     margin-right: 2vw;
     padding-bottom: 2%;
   }
   .nav a {
     padding: 0 2%;
   }
-  .nav a:nth-child(3){
+  .nav a:nth-child(3) {
     margin-right: 7%;
   }
 }

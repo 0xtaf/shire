@@ -14,8 +14,6 @@ const BlogPost = ({ post }) => (
           </h2>
           <hr />
           <ReactMarkdown source={post.details} className={classes.blogText} />
-
-          <div className={classes.blogDate}>{post.date}</div>
         </div>
 
         <style jsx>{``}</style>

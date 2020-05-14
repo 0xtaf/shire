@@ -23,13 +23,11 @@ app
     const createUser = require("./routes/userCreate.js")
     const sendMail = require("./routes/send.js")
     const createBlog = require("./routes/posts/blogCreate.js")
-    const createWriteup = require("./routes/write-ups/writeupCreate.js")
 
     server.use("/api", showRoutes(server));
     server.use("/api", createUser(server));
     server.use("/api", sendMail(server));
     server.use("/api", createBlog(server));
-    server.use("/api", createWriteup(server));
 
     server.get("*", (req, res) => {
       return handle(req, res);
