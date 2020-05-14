@@ -4,8 +4,10 @@ import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/blogIndex.module.css';
 import dbConnect from '../../server/utils/dbConnect';
 import Post from '../../server/Models/Post';
+let moment = require('moment');
 
 const Blog = ({ posts }) => (
+  
   <Layout>
     <div className="container">
       <div className={classes.wrapper}>
@@ -16,17 +18,11 @@ const Blog = ({ posts }) => (
             <article key={post._id}>
               <div>
                 <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
-                  <a>
-                    <img src={`${slug(post.title)}.png`} alt="1" />
-                  </a>
-                </Link>
-                <Link href="/blogs/[slug]" as={`/blogs/${slug(post.title)}`}>
                   <a className={classes.title}>
                     <div>{post.title}</div>
                   </a>
                 </Link>
-
-                <div className="blog-date">{post.date}</div>
+                <div className="blog-date">{moment(post.date).format('MMMM Do, YYYY')}</div>
               </div>
             </article>
           ))}
@@ -51,7 +47,7 @@ const Blog = ({ posts }) => (
 export async function getStaticProps(req, res) {
   dbConnect();
 
-  const postx = await Post.find({}, 'id title slug');
+  const postx = await Post.find({}, 'id title slug date');
   const postz = await JSON.parse(JSON.stringify(postx));
   return { props: { posts: postz } };
 }

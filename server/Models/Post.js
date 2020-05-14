@@ -11,7 +11,8 @@ const PostSchema = new mongoose.Schema({
     type: String,
   },
   date: {
-    type: String,
+    type: Date,
+    default: Date.now()
   },
   slug: {
     type: String,
@@ -22,5 +23,6 @@ PostSchema.pre('save', function (next) {
   this.slug = slug(this.title);
   next();
 });
+
 
 module.exports = mongoose.models.Post || mongoose.model('Post', PostSchema);
