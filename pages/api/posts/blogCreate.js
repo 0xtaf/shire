@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const dbConnect = require  ('../../utils/dbConnect');
-const Post = require ('../../Models/Post');
+const dbConnect = require  ('../../../utils/dbConnect');
+const Post = require ('../../../Models/Post');
 
 dbConnect();
 

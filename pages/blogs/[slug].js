@@ -1,8 +1,8 @@
 import Layout from '../../components/Layout/Layout';
 import classes from '../../styles/slugs.module.css';
 const ReactMarkdown = require('react-markdown');
-import dbConnect from '../../server/utils/dbConnect';
-import Post from '../../server/Models/Post';
+import dbConnect from '../../utils/dbConnect';
+import Post from '../../Models/Post';
 
 const BlogPost = ({ post }) => (
   <Layout>

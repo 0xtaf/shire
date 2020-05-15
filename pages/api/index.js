@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const passportConfig = require('../config/passport');
-const User = require('../Models/User');
-const dbConnect = require('../utils/dbConnect');
+require('../../server/config/passport');
+const User = require('../../Models/User');
+const dbConnect = require('../../utils/dbConnect');
 
 dbConnect();
 

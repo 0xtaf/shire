@@ -1,6 +1,6 @@
 export default {
   login: (user) => {
-    return fetch('/api/panel-login', {
+    return fetch('https://www.tayfunsur.com/api/panel-login', {
       method: 'post',
       body: JSON.stringify(user),
       headers: {
@@ -17,7 +17,7 @@ export default {
     });
   },
   register: (user) => {
-    return fetch('/api/userCreate', {
+    return fetch('https://www.tayfunsur.com/api/userCreate', {
       method: 'post',
       body: JSON.stringify(user),
       headers: {
@@ -28,12 +28,12 @@ export default {
       .then((data) => data);
   },
   logout: () => {
-    return fetch('/api/logout')
+    return fetch('https://www.tayfunsur.com/api/logout')
       .then((res) => res.json())
       .then((data) => data);
   },
   isAuthenticated: () => {
-    return fetch('/api/authenticated').then((res) => {
+    return fetch('https://www.tayfunsur.com/api/authenticated').then((res) => {
       if (res.status !== 401) return res.json().then((data) => data);
       else
         return { isAuthenticated: false, user: { username: '', isAdmin: '' } };

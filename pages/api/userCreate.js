@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const passportConfig = require('../config/passport');
+require('../../server/config/passport');
 const JWT = require('jsonwebtoken');
 
-const dbConnect = require('../utils/dbConnect');
+const dbConnect = require('../../utils/dbConnect');
 
-const User = require('../Models/User');
+const User = require('../../Models/User');
 
 dbConnect();
 
@@ -22,7 +22,7 @@ const signToken = (userID) => {
 };
 
 function routes(app) {
-  router.post('/userCreate', async (req, res, next) => {
+  router.post('/routes/userCreate', async (req, res, next) => {
     const { username, password } = req.body;
 
     try {
