@@ -1,7 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
-require('../../server/config/passport');
+
+// const passport = require('passport');
+// require('../../server/config/passport');
 const User = require('../../Models/User');
 const dbConnect = require('../../utils/dbConnect');
 

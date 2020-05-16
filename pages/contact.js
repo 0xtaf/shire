@@ -9,7 +9,7 @@ const Contact = () => {
     info: { error: false, msg: null },
   });
   const [captcha, setCaptcha] = useState({
-    isValue: false,
+    isValue: true,
   });
   const [inputs, setInputs] = useState({
     email: '',

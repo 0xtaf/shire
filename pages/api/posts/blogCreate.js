@@ -1,41 +1,32 @@
-const express = require("express");
-const router = express.Router();
-
-const dbConnect = require  ('../../../utils/dbConnect');
-const Post = require ('../../../Models/Post');
+const dbConnect = require('../../../utils/dbConnect');
+const Post = require('../../../Models/Post');
 
 dbConnect();
 
-function routes(app) {
-  router.post("/posts/blogCreate", async (req, res) => {
-    const { method } = req;
-    
-    switch (method) {
-      case 'GET':
-        try {
-          const postx = await Post.find({});
-          res.status(200).json({ success: true, data: postx });
-        } catch (error) {
-          res.status(400).json({ success: false });
-        }
-        break;
-      case 'POST':
-        try {
-          const post = await Post.create(req.body);
-  
-          res.status(201).json({ success: true, data: post });
-        } catch (error) {
-          res.status(400).json({ success: false, message: console.log(error) });
-        }
-  
-        break;
-      default:
+export default async (req, res) => {
+  const { method } = req;
+
+  switch (method) {
+    case 'GET':
+      try {
+        const postx = await Post.find({});
+        res.status(200).json({ success: true, data: postx });
+      } catch (error) {
         res.status(400).json({ success: false });
-        break;
-    }
-  });
+      }
+      break;
+    case 'POST':
+      try {
+        const post = await Post.create(req.body);
 
-  return router;
+        res.status(201).json({ success: true, data: post });
+      } catch (error) {
+        res.status(400).json({ success: false, message: console.log(error) });
+      }
+
+      break;
+    default:
+      res.status(400).json({ success: false });
+      break;
+  }
 };
-
-module.exports = routes;
