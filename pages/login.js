@@ -28,7 +28,6 @@ const Login = () => {
       },
     });
     const json = await resp.json();
-    console.log(json)
     setMessage(json.message);
     if (json.message.msgError === false) {
       router.push('/');
