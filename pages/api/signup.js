@@ -17,6 +17,7 @@ export default async function signup(req, res) {
           password: req.body.password,
         };
         const user = new User(userInput);
+        console.log(user);
         await user.save();
         res.status(201).json({
           message: {
@@ -28,7 +29,7 @@ export default async function signup(req, res) {
     } catch (err) {
       res
         .status(500)
-        .json({ message: { msgBody: 'Error has occured', msgError: true } });
+        .json({ message: { msgBody: 'Error has occured', msgError: err } });
     }
   } else {
     res.status(400).json({ message: 'I only support POST' });

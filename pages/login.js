@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Message from '../components/Message/Message';
 
 import { useRouter } from 'next/router';
@@ -7,39 +7,31 @@ import Layout from '../components/Layout/Layout';
 const serverUrl = 'https://www.tayfunsur.com';
 // const serverUrl = 'http://localhost:3000';
 
-const Signup = () => {
+const Login = () => {
   const [user, setUser] = useState({ username: '', password: '' });
   const [message, setMessage] = useState(null);
-  const router = useRouter();
-  let timerID = useRef(null);
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(timerID);
-    };
-  }, []);
+  const router = useRouter();
   const onChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    e.preventDefault();
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-
   async function onSubmit(e) {
     e.preventDefault();
-    const resp = await fetch(`${serverUrl}/api/signup`, {
+    const resp = await fetch(`${serverUrl}/api/login`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
-    })
+    });
     const json = await resp.json();
+    console.log(json)
     setMessage(json.message);
-    
-    if (!json.message.msgError) {
-      timerID = setTimeout(() => {
-        router.push('/login');
-      }, 2000);
+    if (json.message.msgError === false) {
+      router.push('/');
     }
   }
 
@@ -48,7 +40,7 @@ const Signup = () => {
       <div className="container">
         <div className="contactWrapper">
           <div className="textWrapper">
-            <h4>Sign Up</h4>
+            <h4>Login</h4>
           </div>
           <form onSubmit={onSubmit}>
             <div className="form-row firstrow">
@@ -75,9 +67,8 @@ const Signup = () => {
                 />
               </div>
 
-              <button type="submit">Sign Up</button>
+              <button type="submit">Log in</button>
             </div>
-
             {message ? <Message message={message} /> : null}
           </form>
 
@@ -206,4 +197,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;
