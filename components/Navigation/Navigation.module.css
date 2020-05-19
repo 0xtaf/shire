@@ -21,7 +21,7 @@
 
 @media (max-width: 650px) {
   .nav {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: .1fr repeat(3, 1fr) .1fr;
     margin-right: 2vw;
     padding-bottom: 2%;
   }
