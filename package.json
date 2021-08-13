@@ -28,7 +28,7 @@
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
-    "next": "^9.4.1",
+    "next": "^11.1.0",
     "next-connect": "^0.6.6",
     "next-fonts": "^1.1.0",
     "normalize.css": "^8.0.1",
