@@ -24,7 +24,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "marked": "^0.8.2",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
